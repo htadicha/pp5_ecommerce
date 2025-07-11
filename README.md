@@ -554,50 +554,419 @@ The URL structure is organized as follows:
 - `/orders/` - Order management
 - `/admin/` - Django admin interface
 
-## 📖 Usage
+## 📖 Usage & User Stories
 
-### For Administrators
+### 👥 User Roles & Personas
 
-1. **Access Admin Panel**
-   - Navigate to `/admin/`
-   - Login with superuser credentials
+#### **🏪 Site Visitors (Anonymous Users)**
+- **Persona**: Potential customers browsing the store
+- **Goals**: Explore products, understand store offerings, gather information
+- **Pain Points**: Limited functionality, can't save preferences, no personalized experience
 
-2. **Manage Categories**
-   - Create product categories
-   - Set category descriptions and images
-   - Configure category slugs for SEO
+#### **👤 Registered Users (Customers)**
+- **Persona**: Active customers with accounts
+- **Goals**: Complete purchases, manage profile, track orders, leave reviews
+- **Pain Points**: Need seamless experience, order tracking, profile management
 
-3. **Product Management**
-   - Add new products with images
-   - Configure product variations
-   - Set pricing and stock levels
-   - Manage product availability
+#### **👨‍💼 Administrators (Store Managers)**
+- **Persona**: Store owners and managers
+- **Goals**: Manage inventory, process orders, analyze performance, maintain store
+- **Pain Points**: Need comprehensive tools, real-time data, efficient workflows
 
-4. **Order Management**
-   - View and process orders
-   - Update order status
-   - Track payment information
-   - Generate invoices
+---
 
-### For Customers
+## 🎭 Detailed User Stories
 
-1. **Browsing Products**
-   - Navigate through categories
-   - Search for specific products
-   - View product details and images
-   - Read customer reviews
+### 🏪 **Site Visitors (Anonymous Users)**
 
-2. **Shopping Cart**
-   - Add products to cart
-   - Modify quantities
-   - Select product variations
-   - Review cart contents
+#### **📱 Product Discovery**
+**Story**: As a site visitor, I want to browse products without registration so that I can explore the store before committing to an account.
 
-3. **Checkout Process**
-   - User registration/login
-   - Shipping address input
-   - Payment method selection
-   - Order confirmation
+**Acceptance Criteria**:
+- ✅ Can view all product categories on homepage
+- ✅ Can browse products by category
+- ✅ Can search products by name and description
+- ✅ Can view product details with images and descriptions
+- ✅ Can see product pricing and availability
+- ✅ Can view customer reviews and ratings
+- ✅ Can add products to cart (requires login for checkout)
+
+**User Flow**:
+1. Visitor lands on homepage
+2. Browses featured products and categories
+3. Clicks on category to see products
+4. Uses search function to find specific items
+5. Views product details with gallery images
+6. Reads customer reviews and ratings
+7. Adds items to cart (redirected to login for checkout)
+
+#### **🔍 Advanced Search & Filtering**
+**Story**: As a site visitor, I want to filter and search products effectively so that I can quickly find what I'm looking for.
+
+**Acceptance Criteria**:
+- ✅ Can search by product name
+- ✅ Can search by product description
+- ✅ Can filter by category
+- ✅ Can filter by price range
+- ✅ Can filter by availability (in stock/out of stock)
+- ✅ Can sort by price (low to high, high to low)
+- ✅ Can sort by newest arrivals
+- ✅ Can sort by popularity (based on sales/reviews)
+
+**User Flow**:
+1. Visitor uses search bar for keyword search
+2. Applies category filters from sidebar
+3. Sets price range using slider
+4. Toggles availability filters
+5. Sorts results by preferred criteria
+6. Views filtered results with clear indicators
+
+#### **📸 Product Gallery & Details**
+**Story**: As a site visitor, I want to see detailed product information and multiple images so that I can make informed purchase decisions.
+
+**Acceptance Criteria**:
+- ✅ Can view main product image
+- ✅ Can browse product gallery with multiple images
+- ✅ Can zoom in on product images
+- ✅ Can see product specifications
+- ✅ Can view product variations (color, size)
+- ✅ Can see stock availability for each variation
+- ✅ Can view related products
+
+**User Flow**:
+1. Clicks on product to view details
+2. Browses through product gallery images
+3. Zooms in on images for detailed view
+4. Selects different product variations
+5. Views stock status for each variation
+6. Explores related product suggestions
+
+---
+
+### 👤 **Registered Users (Customers)**
+
+#### **👤 Profile Management**
+**Story**: As a registered user, I want to manage my profile information and preferences so that I can have a personalized shopping experience.
+
+**Acceptance Criteria**:
+- ✅ Can update personal information (name, email, phone)
+- ✅ Can upload and change profile picture
+- ✅ Can manage multiple shipping addresses
+- ✅ Can set default shipping address
+- ✅ Can view order history
+- ✅ Can save favorite products (wishlist)
+- ✅ Can manage account preferences
+- ✅ Can change password securely
+
+**User Flow**:
+1. User logs into account
+2. Navigates to profile section
+3. Updates personal information
+4. Uploads new profile picture
+5. Adds/edits shipping addresses
+6. Sets default address for quick checkout
+7. Views complete order history
+8. Manages wishlist items
+
+#### **📝 Review & Rating System**
+**Story**: As a registered user, I want to leave reviews and ratings for products I've purchased so that I can help other customers and share my experience.
+
+**Acceptance Criteria**:
+- ✅ Can only review products after purchase
+- ✅ Can rate products from 1-5 stars
+- ✅ Can write detailed text reviews
+- ✅ Can edit/update existing reviews
+- ✅ Can see my review history
+- ✅ Can upload images with reviews
+- ✅ Can receive notifications when review is approved
+- ✅ Can see helpful/not helpful feedback on reviews
+
+**User Flow**:
+1. User completes a purchase
+2. Receives email invitation to review
+3. Clicks review link in email
+4. Rates product with star system
+5. Writes detailed review text
+6. Optionally uploads product photos
+7. Submits review for moderation
+8. Receives confirmation when review is published
+
+#### **🛒 Enhanced Shopping Cart**
+**Story**: As a registered user, I want to manage my shopping cart with advanced features so that I can have a smooth shopping experience.
+
+**Acceptance Criteria**:
+- ✅ Can add products to cart with variations
+- ✅ Can modify quantities in cart
+- ✅ Can remove items from cart
+- ✅ Can save cart for later
+- ✅ Can apply discount codes
+- ✅ Can see real-time price calculations
+- ✅ Can estimate shipping costs
+- ✅ Can view cart across devices (sync)
+
+**User Flow**:
+1. User adds products to cart
+2. Selects product variations (color, size)
+3. Modifies quantities as needed
+4. Applies discount codes if available
+5. Views shipping cost estimates
+6. Saves cart for later if needed
+7. Proceeds to secure checkout
+
+#### **📦 Order Tracking & Management**
+**Story**: As a registered user, I want to track my orders and manage order history so that I can stay informed about my purchases.
+
+**Acceptance Criteria**:
+- ✅ Can view all order history
+- ✅ Can track order status in real-time
+- ✅ Can view order details and invoice
+- ✅ Can cancel orders (if eligible)
+- ✅ Can request returns/refunds
+- ✅ Can download invoices
+- ✅ Can receive order status notifications
+- ✅ Can reorder previous purchases
+
+**User Flow**:
+1. User places order successfully
+2. Receives order confirmation email
+3. Tracks order status in account dashboard
+4. Receives updates via email/SMS
+5. Views detailed order information
+6. Downloads invoice when needed
+7. Requests return if necessary
+8. Reorders favorite items easily
+
+#### **💳 Secure Checkout Process**
+**Story**: As a registered user, I want to complete purchases securely and efficiently so that I can buy products with confidence.
+
+**Acceptance Criteria**:
+- ✅ Can use saved payment methods
+- ✅ Can add new payment methods securely
+- ✅ Can use multiple payment options (credit card, PayPal, etc.)
+- ✅ Can save shipping addresses
+- ✅ Can add order notes
+- ✅ Can review order before confirmation
+- ✅ Can receive order confirmation
+- ✅ Can track payment status
+
+**User Flow**:
+1. User proceeds to checkout from cart
+2. Reviews order summary
+3. Selects saved shipping address or adds new one
+4. Chooses payment method
+5. Enters payment details securely
+6. Adds order notes if needed
+7. Reviews final order details
+8. Confirms purchase
+9. Receives order confirmation
+
+---
+
+### 👨‍💼 **Administrators (Store Managers)**
+
+#### **📊 Dashboard Analytics**
+**Story**: As an administrator, I want to view comprehensive analytics and reports so that I can make informed business decisions.
+
+**Acceptance Criteria**:
+- ✅ Can view sales analytics and trends
+- ✅ Can monitor inventory levels
+- ✅ Can track customer behavior
+- ✅ Can view popular products
+- ✅ Can analyze review ratings
+- ✅ Can export reports in multiple formats
+- ✅ Can set up automated alerts
+- ✅ Can view real-time store performance
+
+**User Flow**:
+1. Admin logs into dashboard
+2. Views overview of key metrics
+3. Analyzes sales trends and patterns
+4. Monitors inventory alerts
+5. Reviews customer feedback
+6. Generates custom reports
+7. Sets up performance alerts
+8. Makes data-driven decisions
+
+#### **📦 Product Management**
+**Story**: As an administrator, I want to manage products efficiently so that I can maintain an attractive and well-organized catalog.
+
+**Acceptance Criteria**:
+- ✅ Can add new products with multiple images
+- ✅ Can edit existing product information
+- ✅ Can manage product variations (color, size)
+- ✅ Can set pricing and discounts
+- ✅ Can manage inventory levels
+- ✅ Can categorize products effectively
+- ✅ Can bulk import/export products
+- ✅ Can schedule product availability
+
+**User Flow**:
+1. Admin navigates to product management
+2. Creates new product with detailed information
+3. Uploads multiple product images
+4. Sets up product variations
+5. Configures pricing and inventory
+6. Assigns product to categories
+7. Sets product availability schedule
+8. Publishes product to store
+
+#### **👥 Customer Management**
+**Story**: As an administrator, I want to manage customer accounts and interactions so that I can provide excellent customer service.
+
+**Acceptance Criteria**:
+- ✅ Can view customer profiles and history
+- ✅ Can manage customer accounts
+- ✅ Can respond to customer inquiries
+- ✅ Can process returns and refunds
+- ✅ Can send targeted communications
+- ✅ Can view customer analytics
+- ✅ Can manage customer groups
+- ✅ Can export customer data
+
+**User Flow**:
+1. Admin accesses customer management
+2. Views customer profiles and order history
+3. Responds to customer support tickets
+4. Processes return/refund requests
+5. Sends personalized communications
+6. Analyzes customer behavior patterns
+7. Manages customer loyalty programs
+8. Exports customer data for analysis
+
+#### **📋 Order Processing**
+**Story**: As an administrator, I want to process orders efficiently so that I can fulfill customer orders accurately and quickly.
+
+**Acceptance Criteria**:
+- ✅ Can view all orders in real-time
+- ✅ Can update order status
+- ✅ Can process payments
+- ✅ Can generate shipping labels
+- ✅ Can send order notifications
+- ✅ Can handle order cancellations
+- ✅ Can manage returns and refunds
+- ✅ Can export order data
+
+**User Flow**:
+1. Admin receives new order notification
+2. Reviews order details and customer information
+3. Verifies payment status
+4. Updates order status to "Processing"
+5. Generates shipping label
+6. Sends shipping confirmation to customer
+7. Tracks order fulfillment
+8. Handles any issues or returns
+
+#### **⭐ Review Moderation**
+**Story**: As an administrator, I want to moderate customer reviews so that I can maintain quality and authenticity of product feedback.
+
+**Acceptance Criteria**:
+- ✅ Can view all submitted reviews
+- ✅ Can approve/reject reviews
+- ✅ Can edit review content if needed
+- ✅ Can respond to customer reviews
+- ✅ Can manage review policies
+- ✅ Can view review analytics
+- ✅ Can flag inappropriate reviews
+- ✅ Can export review data
+
+**User Flow**:
+1. Admin receives review submission notification
+2. Reviews submitted content for appropriateness
+3. Checks if customer actually purchased product
+4. Approves or rejects review with comments
+5. Responds to customer if needed
+6. Monitors review quality metrics
+7. Updates review policies as needed
+8. Manages review-related customer service
+
+#### **💰 Payment & Financial Management**
+**Story**: As an administrator, I want to manage payments and financial transactions so that I can track revenue and handle financial operations.
+
+**Acceptance Criteria**:
+- ✅ Can view payment transactions
+- ✅ Can process refunds
+- ✅ Can manage payment methods
+- ✅ Can generate financial reports
+- ✅ Can track revenue analytics
+- ✅ Can handle payment disputes
+- ✅ Can manage tax calculations
+- ✅ Can export financial data
+
+**User Flow**:
+1. Admin monitors payment dashboard
+2. Reviews successful transactions
+3. Processes refund requests
+4. Handles payment disputes
+5. Generates financial reports
+6. Analyzes revenue trends
+7. Manages tax calculations
+8. Exports data for accounting
+
+#### **🎨 Content Management**
+**Story**: As an administrator, I want to manage website content and marketing materials so that I can maintain an attractive and informative store.
+
+**Acceptance Criteria**:
+- ✅ Can manage homepage content
+- ✅ Can create promotional banners
+- ✅ Can manage product categories
+- ✅ Can create marketing campaigns
+- ✅ Can manage SEO content
+- ✅ Can upload and organize media
+- ✅ Can schedule content updates
+- ✅ Can A/B test content
+
+**User Flow**:
+1. Admin accesses content management
+2. Updates homepage featured products
+3. Creates promotional banners
+4. Organizes product categories
+5. Optimizes SEO content
+6. Uploads new media assets
+7. Schedules content updates
+8. Monitors content performance
+
+---
+
+### 🔄 **Cross-Role User Stories**
+
+#### **🔔 Notification System**
+**Story**: As any user, I want to receive relevant notifications so that I can stay informed about important updates.
+
+**Acceptance Criteria**:
+- ✅ Users receive order status updates
+- ✅ Users receive review approval notifications
+- ✅ Admins receive new order alerts
+- ✅ Admins receive low inventory warnings
+- ✅ Users receive promotional offers
+- ✅ Users receive abandoned cart reminders
+- ✅ Admins receive customer support requests
+- ✅ Users receive shipping confirmations
+
+#### **📱 Mobile Responsiveness**
+**Story**: As any user, I want to access the store on mobile devices so that I can shop conveniently from anywhere.
+
+**Acceptance Criteria**:
+- ✅ Store works perfectly on all screen sizes
+- ✅ Touch-friendly interface elements
+- ✅ Fast loading on mobile networks
+- ✅ Easy navigation on small screens
+- ✅ Optimized images for mobile
+- ✅ Mobile-friendly checkout process
+- ✅ Responsive admin dashboard
+- ✅ Mobile push notifications
+
+#### **🔒 Security & Privacy**
+**Story**: As any user, I want my data to be secure and private so that I can shop with confidence.
+
+**Acceptance Criteria**:
+- ✅ Secure payment processing
+- ✅ Encrypted data transmission
+- ✅ GDPR compliance
+- ✅ Secure user authentication
+- ✅ Privacy policy compliance
+- ✅ Secure admin access
+- ✅ Data backup and recovery
+- ✅ Regular security updates
 
 ![User Interface](docs/images/user-interface.png)
 *[Placeholder: Add screenshot of the main user interface]*
