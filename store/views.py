@@ -12,7 +12,13 @@ from orders.models import OrderProduct
 
 
 def store(request, category_slug=None):
-    """Display products with optional category filtering and pagination."""
+    """
+    Display products with optional category filtering and pagination.
+    
+    Handles the main store page view with support for category filtering.
+    Implements pagination for better performance with large product catalogs.
+    Returns filtered products based on category slug or all available products.
+    """
     categories = None
     products = None
 
@@ -35,7 +41,13 @@ def store(request, category_slug=None):
 
 
 def product_detail(request, category_slug, product_slug):
-    """Display detailed product information with reviews and gallery."""
+    """
+    Display detailed product information with reviews and gallery.
+    
+    Shows comprehensive product details including images, reviews, ratings,
+    and related information. Checks if product is in user's cart and if
+    user has previously purchased the product for review eligibility.
+    """
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
@@ -64,7 +76,13 @@ def product_detail(request, category_slug, product_slug):
 
 
 def search(request):
-    """Search products by name or description keywords."""
+    """
+    Search products by name or description keywords.
+    
+    Implements product search functionality using case-insensitive text matching
+    on product names and descriptions. Returns filtered products based on
+    search keywords provided in the request.
+    """
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
@@ -78,7 +96,13 @@ def search(request):
 
 
 def submit_review(request, product_id):
-    """Submit or update a product review."""
+    """
+    Submit or update a product review.
+    
+    Handles review submission and updates for authenticated users.
+    Creates new reviews or updates existing ones based on user's previous
+    review history. Includes validation and success message handling.
+    """
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
         try:

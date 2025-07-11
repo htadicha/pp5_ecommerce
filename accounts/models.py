@@ -5,7 +5,13 @@ from django.dispatch import receiver
 
 
 class MyAccountManager(BaseUserManager):
-    """Custom user manager for Account model."""
+    """
+    Custom user manager for Account model.
+    
+    Extends Django's BaseUserManager to provide custom user creation methods
+    for the Account model. Handles both regular user and superuser creation
+    with proper validation and normalization.
+    """
     
     def create_user(self, first_name, last_name, username, email, password=None):
         """Create and save a regular user with the given email and password."""
@@ -44,7 +50,13 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    """Custom user model extending AbstractBaseUser."""
+    """
+    Custom user model extending AbstractBaseUser.
+    
+    Replaces Django's default User model with a custom implementation
+    that uses email as the primary identifier. Includes additional fields
+    for phone number and various permission flags for admin functionality.
+    """
     first_name      = models.CharField(max_length=50)
     last_name       = models.CharField(max_length=50)
     username        = models.CharField(max_length=50, unique=True)
@@ -80,7 +92,13 @@ class Account(AbstractBaseUser):
 
 
 class UserProfile(models.Model):
-    """Extended user profile with additional information."""
+    """
+    Extended user profile with additional information.
+    
+    Provides additional user information beyond the basic Account model,
+    including address details and profile picture. Automatically created
+    when a new Account is created via signal handlers.
+    """
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     address_line_1 = models.CharField(blank=True, max_length=100)
     address_line_2 = models.CharField(blank=True, max_length=100)

@@ -3,7 +3,13 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    """Model for product categories."""
+    """
+    Model for product categories.
+    
+    Represents product categories in the e-commerce system. Each category
+    has a name, slug for URL generation, optional description, and image.
+    Categories are used to organize products and enable filtering functionality.
+    """
     category_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(max_length=255, blank=True)

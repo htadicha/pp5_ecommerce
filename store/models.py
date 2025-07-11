@@ -6,7 +6,13 @@ from django.db.models import Avg, Count
 
 
 class Product(models.Model):
-    """Product model for storing product information."""
+    """
+    Product model for storing comprehensive product information.
+    
+    This model represents products in the e-commerce system with fields for
+    basic information, pricing, inventory, categorization, and status flags.
+    Includes methods for URL generation, review calculations, and string representation.
+    """
     product_name    = models.CharField(max_length=200, unique=True)
     slug            = models.SlugField(max_length=200, unique=True)
     description     = models.TextField(max_length=500, blank=True)
@@ -46,7 +52,12 @@ class Product(models.Model):
 
 
 class VariationManager(models.Manager):
-    """Custom manager for Variation model with filtering methods."""
+    """
+    Custom manager for Variation model with specialized filtering methods.
+    
+    Provides convenient methods to filter variations by category (color/size)
+    and active status, making it easier to query specific variation types.
+    """
     
     def colors(self):
         """Return only color variations that are active."""
@@ -64,7 +75,13 @@ variation_category_choice = (
 
 
 class Variation(models.Model):
-    """Model for product variations like color and size."""
+    """
+    Model for product variations like color and size.
+    
+    Represents different variations of a product (e.g., red/blue colors,
+    small/medium/large sizes). Each variation is linked to a product and
+    can be activated or deactivated independently.
+    """
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variation_category = models.CharField(max_length=100, choices=variation_category_choice)
     variation_value     = models.CharField(max_length=100)
@@ -79,7 +96,12 @@ class Variation(models.Model):
 
 
 class ReviewRating(models.Model):
-    """Model for storing product reviews and ratings."""
+    """
+    Model for storing product reviews and ratings.
+    
+    Captures user feedback for products including ratings, review text,
+    and metadata. Supports IP tracking and moderation status for review management.
+    """
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100, blank=True)
@@ -96,7 +118,12 @@ class ReviewRating(models.Model):
 
 
 class ProductGallery(models.Model):
-    """Model for storing multiple images for a product."""
+    """
+    Model for storing multiple images for a product.
+    
+    Allows products to have multiple images beyond the main product image.
+    Useful for showing different angles, colors, or details of the same product.
+    """
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='store/products', max_length=255)
 
