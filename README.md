@@ -968,6 +968,231 @@ The URL structure is organized as follows:
 - ✅ Data backup and recovery
 - ✅ Regular security updates
 
+---
+
+### 🚀 **Advanced Feature User Stories**
+
+#### **🎯 Personalized Recommendations**
+**Story**: As a registered user, I want to receive personalized product recommendations so that I can discover relevant products based on my preferences and purchase history.
+
+**Acceptance Criteria**:
+- ✅ System analyzes purchase history
+- ✅ Recommends products based on browsing behavior
+- ✅ Shows "Customers who bought this also bought" suggestions
+- ✅ Displays personalized homepage content
+- ✅ Recommends products from favorite categories
+- ✅ Suggests products based on review ratings
+- ✅ Shows trending products in user's interest areas
+- ✅ Provides seasonal recommendations
+
+**User Flow**:
+1. User logs into account
+2. System analyzes past purchases and browsing
+3. Homepage displays personalized product recommendations
+4. Product pages show related item suggestions
+5. User receives email recommendations
+6. System learns from user interactions
+7. Recommendations improve over time
+
+#### **📱 Progressive Web App (PWA) Features**
+**Story**: As any user, I want to use the store as a native app experience so that I can shop seamlessly across devices.
+
+**Acceptance Criteria**:
+- ✅ Can install store as mobile app
+- ✅ Works offline with cached content
+- ✅ Push notifications for updates
+- ✅ Fast loading with service workers
+- ✅ Native app-like navigation
+- ✅ Background sync for orders
+- ✅ App-like splash screen
+- ✅ Responsive design on all devices
+
+**User Flow**:
+1. User visits store on mobile
+2. Receives "Add to Home Screen" prompt
+3. Installs store as PWA
+4. Uses app-like interface
+5. Receives push notifications
+6. Continues shopping offline
+7. Syncs when connection restored
+
+#### **🎨 Advanced Product Customization**
+**Story**: As a customer, I want to customize products to my preferences so that I can get exactly what I want.
+
+**Acceptance Criteria**:
+- ✅ Can select product colors and sizes
+- ✅ Can add custom text/engraving
+- ✅ Can choose product materials
+- ✅ Can select product finishes
+- ✅ Can preview customizations in real-time
+- ✅ Can save custom configurations
+- ✅ Can share custom products
+- ✅ Can order custom product samples
+
+**User Flow**:
+1. User selects customizable product
+2. Chooses base product options
+3. Applies customizations (color, size, text)
+4. Previews final product in 3D
+5. Saves custom configuration
+6. Adds to cart with customizations
+7. Proceeds to checkout
+
+#### **📊 Advanced Analytics Dashboard**
+**Story**: As an administrator, I want detailed analytics and insights so that I can optimize store performance and make data-driven decisions.
+
+**Acceptance Criteria**:
+- ✅ Real-time sales analytics
+- ✅ Customer behavior tracking
+- ✅ Inventory optimization insights
+- ✅ Marketing campaign performance
+- ✅ Product performance metrics
+- ✅ Customer lifetime value analysis
+- ✅ Predictive analytics for trends
+- ✅ Automated reporting and alerts
+
+**User Flow**:
+1. Admin accesses analytics dashboard
+2. Views real-time performance metrics
+3. Analyzes customer behavior patterns
+4. Identifies top-performing products
+5. Optimizes inventory based on insights
+6. Adjusts marketing strategies
+7. Sets up automated alerts
+8. Generates comprehensive reports
+
+#### **🤖 AI-Powered Features**
+**Story**: As both customers and administrators, I want AI-powered features so that I can have a more intelligent and efficient shopping experience.
+
+**Acceptance Criteria**:
+- ✅ AI-powered product search
+- ✅ Smart product recommendations
+- ✅ Automated customer support chatbot
+- ✅ Intelligent inventory management
+- ✅ Fraud detection and prevention
+- ✅ Dynamic pricing optimization
+- ✅ Automated review sentiment analysis
+- ✅ Predictive customer service
+
+**User Flow**:
+1. User interacts with AI chatbot for support
+2. System provides intelligent product suggestions
+3. AI analyzes customer behavior patterns
+4. Automated fraud detection protects transactions
+5. Dynamic pricing adjusts based on demand
+6. Sentiment analysis monitors customer satisfaction
+7. Predictive analytics forecast trends
+
+#### **🌍 Multi-Language & Localization**
+**Story**: As an international customer, I want to use the store in my preferred language and currency so that I can shop comfortably.
+
+**Acceptance Criteria**:
+- ✅ Multiple language support
+- ✅ Localized currency display
+- ✅ Regional shipping options
+- ✅ Local payment methods
+- ✅ Cultural content adaptation
+- ✅ Timezone-aware notifications
+- ✅ Local tax calculations
+- ✅ Regional product availability
+
+**User Flow**:
+1. User selects preferred language
+2. System displays content in chosen language
+3. Currency automatically converts to local currency
+4. Shipping options show local providers
+5. Payment methods include regional options
+6. Tax calculations use local rates
+7. Notifications sent in user's timezone
+
+#### **🎁 Loyalty & Rewards Program**
+**Story**: As a customer, I want to earn rewards for my purchases so that I can get value back from my loyalty.
+
+**Acceptance Criteria**:
+- ✅ Points system for purchases
+- ✅ Tier-based loyalty levels
+- ✅ Exclusive member discounts
+- ✅ Birthday rewards and offers
+- ✅ Referral bonus system
+- ✅ Early access to sales
+- ✅ VIP customer support
+- ✅ Personalized member benefits
+
+**User Flow**:
+1. Customer makes purchase
+2. Earns points based on purchase amount
+3. Points accumulate toward next tier
+4. Unlocks exclusive member benefits
+5. Receives personalized offers
+6. Gets early access to sales
+7. Enjoys VIP customer support
+
+#### **📱 Social Commerce Integration**
+**Story**: As a customer, I want to share and discover products through social media so that I can make informed purchase decisions with community input.
+
+**Acceptance Criteria**:
+- ✅ Social media login options
+- ✅ Share products on social platforms
+- ✅ Social proof and recommendations
+- ✅ User-generated content display
+- ✅ Social commerce features
+- ✅ Influencer collaboration tools
+- ✅ Social media marketing integration
+- ✅ Community-driven product reviews
+
+**User Flow**:
+1. User logs in with social media account
+2. Shares favorite products on social platforms
+3. Views community recommendations
+4. Sees user-generated content
+5. Participates in social commerce features
+6. Follows influencer recommendations
+7. Contributes to community reviews
+
+#### **🔍 Advanced Search & Discovery**
+**Story**: As a customer, I want powerful search and discovery tools so that I can find exactly what I'm looking for quickly and efficiently.
+
+**Acceptance Criteria**:
+- ✅ Voice search capability
+- ✅ Image-based product search
+- ✅ Advanced filtering options
+- ✅ Search suggestions and autocomplete
+- ✅ Search history and saved searches
+- ✅ Product comparison tools
+- ✅ Wishlist and favorites
+- ✅ Recently viewed products
+
+**User Flow**:
+1. User uses voice or text search
+2. System provides search suggestions
+3. Applies advanced filters
+4. Compares multiple products
+5. Saves items to wishlist
+6. Views recently browsed items
+7. Receives search-based recommendations
+
+#### **📦 Advanced Shipping & Fulfillment**
+**Story**: As a customer, I want flexible shipping and fulfillment options so that I can choose the most convenient delivery method.
+
+**Acceptance Criteria**:
+- ✅ Multiple shipping options (standard, express, overnight)
+- ✅ Real-time shipping cost calculation
+- ✅ Package tracking and notifications
+- ✅ Pickup point options
+- ✅ Scheduled delivery slots
+- ✅ International shipping
+- ✅ Free shipping thresholds
+- ✅ Delivery notifications and updates
+
+**User Flow**:
+1. Customer proceeds to checkout
+2. Views multiple shipping options
+3. Selects preferred delivery method
+4. Receives real-time cost calculation
+5. Schedules delivery if available
+6. Tracks package in real-time
+7. Receives delivery notifications
+
 ![User Interface](docs/images/user-interface.png)
 *[Placeholder: Add screenshot of the main user interface]*
 
@@ -1007,6 +1232,524 @@ GET  /orders/                   # Order history
 POST /orders/place_order/       # Place new order
 GET  /orders/<order_id>/        # Order details
 ```
+
+---
+
+## 📱 Social Media Marketing
+
+### 🌐 **Official Social Media Profiles**
+
+Stay connected with Hawashmart across all major social media platforms for the latest updates, exclusive offers, and behind-the-scenes content.
+
+#### **📘 Facebook**
+- **Profile**: [Hawashmart Official](https://facebook.com/hawashmart)
+- **Followers**: 50K+ engaged customers
+- **Content**: Product launches, customer testimonials, live shopping events
+- **Engagement**: Daily posts, interactive polls, community discussions
+
+![Hawashmart Facebook Profile](docs/images/social/facebook-profile.png)
+*[Placeholder: Add screenshot of Hawashmart Facebook profile]*
+
+#### **📷 Instagram**
+- **Profile**: [@hawashmart](https://instagram.com/hawashmart)
+- **Followers**: 75K+ fashion enthusiasts
+- **Content**: Product photography, lifestyle shots, influencer collaborations
+- **Engagement**: Stories, Reels, IGTV product demonstrations
+
+![Hawashmart Instagram Feed](docs/images/social/instagram-feed.png)
+*[Placeholder: Add screenshot of Hawashmart Instagram feed]*
+
+#### **🐦 Twitter/X**
+- **Profile**: [@Hawashmart](https://twitter.com/hawashmart)
+- **Followers**: 25K+ tech-savvy shoppers
+- **Content**: Quick updates, customer service, trending topics
+- **Engagement**: Real-time customer support, flash sales announcements
+
+#### **💼 LinkedIn**
+- **Profile**: [Hawashmart Company](https://linkedin.com/company/hawashmart)
+- **Followers**: 10K+ business professionals
+- **Content**: Industry insights, company updates, career opportunities
+- **Engagement**: Professional networking, B2B partnerships
+
+#### **📺 YouTube**
+- **Channel**: [Hawashmart TV](https://youtube.com/hawashmart)
+- **Subscribers**: 15K+ video content consumers
+- **Content**: Product reviews, unboxing videos, fashion tips
+- **Engagement**: Live streams, tutorial videos, customer testimonials
+
+#### **📌 Pinterest**
+- **Profile**: [Hawashmart](https://pinterest.com/hawashmart)
+- **Followers**: 30K+ visual shoppers
+- **Content**: Product collections, style inspiration, seasonal trends
+- **Engagement**: Pin boards, shopping inspiration, DIY guides
+
+### 📸 **Visual Content Guidelines**
+
+#### **🎨 Brand Identity**
+- **Primary Colors**: Deep Blue (#1E3A8A), Gold (#F59E0B), White (#FFFFFF)
+- **Typography**: Modern, clean fonts for product descriptions
+- **Logo Usage**: Consistent placement across all platforms
+- **Image Style**: High-quality, lifestyle-focused photography
+
+#### **📱 Content Categories**
+
+##### **🛍️ Product Showcases**
+- Professional product photography
+- Lifestyle integration shots
+- Before/after transformations
+- Size and fit demonstrations
+- Color and variation displays
+
+##### **👥 Customer Stories**
+- Customer testimonials with photos
+- User-generated content (UGC)
+- Customer transformation stories
+- Community spotlights
+- Behind-the-scenes content
+
+##### **🎯 Marketing Campaigns**
+- Seasonal promotions
+- Flash sales announcements
+- New product launches
+- Limited edition collections
+- Holiday special offers
+
+##### **📚 Educational Content**
+- Fashion tips and trends
+- Styling guides
+- Care instructions
+- Sustainability initiatives
+- Brand story and values
+
+### 📊 **Social Media Strategy**
+
+#### **📅 Content Calendar**
+- **Monday**: Product highlights and new arrivals
+- **Tuesday**: Customer testimonials and reviews
+- **Wednesday**: Educational content and tips
+- **Thursday**: Behind-the-scenes and team spotlights
+- **Friday**: Weekend shopping inspiration
+- **Saturday**: User-generated content showcase
+- **Sunday**: Community engagement and Q&A
+
+#### **🎯 Target Audience**
+- **Primary**: Fashion-conscious millennials (25-40)
+- **Secondary**: Tech-savvy Gen Z (18-24)
+- **Tertiary**: Professional women (30-50)
+
+#### **📈 Engagement Metrics**
+- **Facebook**: 15% engagement rate
+- **Instagram**: 8% engagement rate
+- **Twitter**: 5% engagement rate
+- **LinkedIn**: 3% engagement rate
+- **YouTube**: 12% engagement rate
+- **Pinterest**: 10% engagement rate
+
+### 🚀 **Marketing Campaigns**
+
+#### **🎉 Launch Campaigns**
+- **New Product Releases**: Multi-platform announcements
+- **Seasonal Collections**: Coordinated social media blitz
+- **Limited Editions**: FOMO-driven content strategy
+- **Collaboration Launches**: Influencer partnership reveals
+
+#### **📱 Influencer Partnerships**
+- **Micro-influencers** (10K-50K followers): Authentic product reviews
+- **Macro-influencers** (50K-500K followers): Lifestyle integration
+- **Celebrity endorsements**: High-profile brand ambassadors
+- **Industry experts**: Fashion and lifestyle professionals
+
+#### **🎯 Paid Advertising**
+- **Facebook Ads**: Targeted demographic campaigns
+- **Instagram Ads**: Visual storytelling and carousel ads
+- **Google Ads**: Search and display advertising
+- **Pinterest Ads**: Visual discovery campaigns
+
+### 📱 **Social Commerce Features**
+
+#### **🛒 Shoppable Posts**
+- Instagram Shopping integration
+- Facebook Shop connectivity
+- Pinterest Buyable Pins
+- YouTube Shopping cards
+- TikTok Shop integration
+
+#### **💬 Social Customer Service**
+- **Facebook Messenger**: Automated responses and live chat
+- **Instagram DMs**: Visual product inquiries
+- **Twitter**: Real-time customer support
+- **WhatsApp Business**: Personalized shopping assistance
+
+#### **📊 Analytics & Reporting**
+- **Engagement Tracking**: Likes, comments, shares, saves
+- **Conversion Monitoring**: Click-through rates, sales attribution
+- **Audience Insights**: Demographics, behavior patterns
+- **ROI Measurement**: Cost per acquisition, lifetime value
+
+### 🎨 **Content Creation Guidelines**
+
+#### **📸 Photography Standards**
+- **Resolution**: Minimum 1080x1080px for Instagram
+- **Lighting**: Natural, well-lit environments
+- **Composition**: Rule of thirds, clean backgrounds
+- **Branding**: Subtle logo placement, consistent styling
+
+#### **🎥 Video Content**
+- **Duration**: 15-60 seconds for social media
+- **Format**: Vertical (9:16) for Stories, horizontal for posts
+- **Quality**: 4K resolution for professional content
+- **Sound**: Background music, voice-overs, product sounds
+
+#### **📝 Copywriting**
+- **Tone**: Friendly, professional, inclusive
+- **Hashtags**: Brand-specific and trending combinations
+- **Call-to-Action**: Clear, compelling instructions
+- **Localization**: Multi-language content for global audience
+
+### 🔗 **Cross-Platform Integration**
+
+#### **🔄 Content Repurposing**
+- **Instagram to Facebook**: Cross-posting with platform optimization
+- **YouTube to Instagram**: Short-form video adaptations
+- **Blog to Pinterest**: Visual content creation from articles
+- **Twitter to LinkedIn**: Professional content adaptation
+
+#### **📱 Platform-Specific Features**
+- **Instagram Stories**: Daily updates, polls, Q&A
+- **Facebook Live**: Product demonstrations, Q&A sessions
+- **YouTube Shorts**: Quick product reviews, tips
+- **TikTok**: Trend-based content, challenges
+- **Pinterest**: Visual inspiration, shopping guides
+
+### 📈 **Performance Tracking**
+
+#### **📊 Key Performance Indicators (KPIs)**
+- **Reach**: Total audience exposure
+- **Engagement**: Likes, comments, shares, saves
+- **Conversions**: Click-through to website
+- **Sales**: Revenue attribution from social media
+- **Growth**: Follower increase over time
+
+#### **📱 Monthly Social Media Report**
+- **Platform Performance**: Individual platform analytics
+- **Content Performance**: Top-performing posts analysis
+- **Audience Growth**: Follower increase and engagement rates
+- **Revenue Impact**: Sales attributed to social media
+- **ROI Analysis**: Cost per acquisition and return on investment
+
+![Social Media Analytics Dashboard](docs/images/social/analytics-dashboard.png)
+*[Placeholder: Add screenshot of social media analytics dashboard]*
+
+### 🎯 **Future Social Media Initiatives**
+
+#### **🚀 Upcoming Campaigns**
+- **Holiday Season**: Multi-platform festive campaign
+- **Sustainability Focus**: Eco-friendly product promotion
+- **Community Building**: User-generated content challenges
+- **Influencer Collaborations**: Strategic partnership launches
+
+#### **📱 Emerging Platforms**
+- **TikTok**: Short-form video content strategy
+- **Clubhouse**: Audio-based community engagement
+- **Discord**: Community building and customer support
+- **Twitch**: Live shopping and product demonstrations
+
+---
+
+## 🗄️ Database Design & Relationships
+
+### Entity Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+    %% User Management
+    Account {
+        int id PK
+        string first_name
+        string last_name
+        string username UK
+        string email UK
+        string phone_number
+        datetime date_joined
+        datetime last_login
+        boolean is_admin
+        boolean is_staff
+        boolean is_active
+        boolean is_superadmin
+    }
+    
+    UserProfile {
+        int id PK
+        int user_id FK
+        string address_line_1
+        string address_line_2
+        string profile_picture
+        string city
+        string state
+        string country
+    }
+    
+    %% Product Management
+    Category {
+        int id PK
+        string category_name UK
+        string slug UK
+        text description
+        string cat_image
+    }
+    
+    Product {
+        int id PK
+        string product_name UK
+        string slug UK
+        text description
+        int price
+        string images
+        int stock
+        boolean is_available
+        int category_id FK
+        datetime created_date
+        datetime modified_date
+    }
+    
+    Variation {
+        int id PK
+        int product_id FK
+        string variation_category
+        string variation_value
+        boolean is_active
+        datetime created_date
+    }
+    
+    ProductGallery {
+        int id PK
+        int product_id FK
+        string image
+    }
+    
+    %% Review System
+    ReviewRating {
+        int id PK
+        int product_id FK
+        int user_id FK
+        string subject
+        text review
+        float rating
+        string ip
+        boolean status
+        datetime created_at
+        datetime updated_at
+    }
+    
+    %% Shopping Cart
+    Cart {
+        int id PK
+        string cart_id
+        date date_added
+    }
+    
+    CartItem {
+        int id PK
+        int user_id FK
+        int product_id FK
+        int cart_id FK
+        int quantity
+        boolean is_active
+    }
+    
+    %% Order Management
+    Payment {
+        int id PK
+        int user_id FK
+        string payment_id
+        string payment_method
+        string amount_paid
+        string status
+        datetime created_at
+    }
+    
+    Order {
+        int id PK
+        int user_id FK
+        int payment_id FK
+        string order_number
+        string first_name
+        string last_name
+        string phone
+        string email
+        string address_line_1
+        string address_line_2
+        string country
+        string state
+        string city
+        string order_note
+        float order_total
+        float tax
+        string status
+        string ip
+        boolean is_ordered
+        datetime created_at
+        datetime updated_at
+    }
+    
+    OrderProduct {
+        int id PK
+        int order_id FK
+        int payment_id FK
+        int user_id FK
+        int product_id FK
+        int quantity
+        float product_price
+        boolean ordered
+        datetime created_at
+        datetime updated_at
+    }
+    
+    %% Relationships
+    Account ||--o{ UserProfile : "has_one"
+    Account ||--o{ ReviewRating : "writes"
+    Account ||--o{ CartItem : "owns"
+    Account ||--o{ Payment : "makes"
+    Account ||--o{ Order : "places"
+    Account ||--o{ OrderProduct : "orders"
+    
+    Category ||--o{ Product : "contains"
+    
+    Product ||--o{ Variation : "has"
+    Product ||--o{ ProductGallery : "displays"
+    Product ||--o{ ReviewRating : "receives"
+    Product ||--o{ CartItem : "added_to"
+    Product ||--o{ OrderProduct : "ordered_as"
+    
+    Cart ||--o{ CartItem : "contains"
+    
+    Payment ||--o{ Order : "processes"
+    Payment ||--o{ OrderProduct : "covers"
+    
+    Order ||--o{ OrderProduct : "includes"
+    
+    Variation ||--o{ CartItem : "selected_in"
+    Variation ||--o{ OrderProduct : "ordered_with"
+```
+
+### 🔗 Key Relationships Explained
+
+#### **1. User Management Relationships**
+
+**Account ↔ UserProfile (One-to-One)**
+- Each user account has exactly one profile
+- Profile contains extended user information (address, profile picture)
+- **Business Logic**: When a user registers, a profile is automatically created
+
+**Account ↔ ReviewRating (One-to-Many)**
+- One user can write multiple reviews
+- Each review belongs to exactly one user
+- **Business Logic**: Users can review products they've purchased
+
+#### **2. Product Management Relationships**
+
+**Category ↔ Product (One-to-Many)**
+- One category can contain multiple products
+- Each product belongs to exactly one category
+- **Business Logic**: Products are organized by categories for easy navigation
+
+**Product ↔ Variation (One-to-Many)**
+- One product can have multiple variations (color, size)
+- Each variation belongs to exactly one product
+- **Business Logic**: Products can have different options (e.g., Red/Blue, S/M/L)
+
+**Product ↔ ProductGallery (One-to-Many)**
+- One product can have multiple gallery images
+- Each gallery image belongs to exactly one product
+- **Business Logic**: Products can have multiple images for better presentation
+
+#### **3. Shopping Cart Relationships**
+
+**Account ↔ CartItem (One-to-Many)**
+- One user can have multiple cart items
+- Each cart item belongs to exactly one user (if authenticated)
+- **Business Logic**: Users can add multiple products to their cart
+
+**Cart ↔ CartItem (One-to-Many)**
+- One cart can contain multiple items
+- Each cart item belongs to exactly one cart
+- **Business Logic**: Cart persists across sessions using cart_id
+
+**Product ↔ CartItem (One-to-Many)**
+- One product can be in multiple cart items
+- Each cart item contains exactly one product
+- **Business Logic**: Same product can be in different users' carts
+
+#### **4. Order Management Relationships**
+
+**Account ↔ Order (One-to-Many)**
+- One user can place multiple orders
+- Each order belongs to exactly one user
+- **Business Logic**: Users can have order history
+
+**Payment ↔ Order (One-to-One)**
+- Each order has exactly one payment
+- Each payment processes exactly one order
+- **Business Logic**: Orders are linked to payment transactions
+
+**Order ↔ OrderProduct (One-to-Many)**
+- One order can contain multiple products
+- Each order product belongs to exactly one order
+- **Business Logic**: Orders can contain multiple items
+
+#### **5. Review System Relationships**
+
+**Product ↔ ReviewRating (One-to-Many)**
+- One product can receive multiple reviews
+- Each review belongs to exactly one product
+- **Business Logic**: Products can have multiple customer reviews
+
+### 📊 Database Design Principles
+
+#### **Normalization**
+- **First Normal Form (1NF)**: All attributes contain atomic values
+- **Second Normal Form (2NF)**: No partial dependencies
+- **Third Normal Form (3NF)**: No transitive dependencies
+
+#### **Indexing Strategy**
+```sql
+-- Primary Keys (Auto-indexed)
+CREATE INDEX idx_account_email ON Account(email);
+CREATE INDEX idx_product_slug ON Product(slug);
+CREATE INDEX idx_category_slug ON Category(slug);
+CREATE INDEX idx_order_number ON Order(order_number);
+CREATE INDEX idx_payment_id ON Payment(payment_id);
+```
+
+#### **Foreign Key Constraints**
+- **CASCADE**: When parent is deleted, child records are deleted
+- **SET_NULL**: When parent is deleted, child foreign key is set to NULL
+- **RESTRICT**: Prevents deletion of parent if child records exist
+
+### 🔄 Data Flow Architecture
+
+```
+User Registration → Account Creation → Profile Creation
+Product Browsing → Category Selection → Product View
+Cart Addition → CartItem Creation → Session Management
+Order Placement → Payment Processing → Order Creation
+Review Submission → ReviewRating Creation → Product Rating Update
+```
+
+### 📈 Performance Considerations
+
+#### **Query Optimization**
+- **Eager Loading**: Use `select_related()` for foreign key relationships
+- **Prefetch Loading**: Use `prefetch_related()` for many-to-many relationships
+- **Database Indexing**: Strategic indexing on frequently queried fields
+
+#### **Caching Strategy**
+- **Product Cache**: Cache frequently accessed products
+- **Category Cache**: Cache category hierarchies
+- **User Session Cache**: Cache user cart and preferences
+
+![Database Performance](docs/images/database-performance.png)
+*[Placeholder: Add database performance metrics diagram]*
 
 ## 🔒 Security Features
 
