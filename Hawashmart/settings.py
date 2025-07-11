@@ -37,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'category',
+    'store',
+    'carts',
+    'orders',
+    'storages',
+    'admin_thumbnails',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -54,7 +63,7 @@ ROOT_URLCONF = 'Hawashmart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/ 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,12 +71,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'category.context_processors.menu_links',
+                'carts.context_processors.counter',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'Hawashmart.wsgi.application'
+AUTH_USER_MODEL = 'accounts.Account'
 
 
 # Database

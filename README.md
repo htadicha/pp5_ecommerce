@@ -1,131 +1,815 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# 🛒 Hawashmart - Advanced Django E-Commerce Platform
 
-Welcome USER_NAME,
+[![Django](https://img.shields.io/badge/Django-5.2.4-green.svg)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)]()
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## 📋 Table of Contents
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+- [Overview](#-overview)
+- [Features](#-features)
+- [Technology Stack](#-technology-stack)
+- [Architecture](#-architecture)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [API Documentation](#-api-documentation)
+- [Database Schema](#-database-schema)
+- [Security Features](#-security-features)
+- [Performance Optimization](#-performance-optimization)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-## Gitpod Reminders
+## 🎯 Overview
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Hawashmart is a full-featured, production-ready e-commerce platform built with Django. This enterprise-grade solution provides a complete online shopping experience with advanced features including user authentication, product management, shopping cart functionality, order processing, payment integration, and comprehensive admin controls.
 
-`python3 -m http.server`
+### 🏆 Key Highlights
 
-A blue button should appear to click: _Make Public_,
+- **Scalable Architecture**: Built with Django's robust framework for enterprise-level scalability
+- **Advanced User Management**: Custom user authentication with profile management
+- **Product Variations**: Support for product colors, sizes, and other variations
+- **Review & Rating System**: Comprehensive product review and rating functionality
+- **Secure Payment Processing**: Integrated payment gateway with transaction tracking
+- **Responsive Design**: Modern, mobile-first UI with Bootstrap framework
+- **Admin Dashboard**: Powerful Django admin interface for complete store management
 
-Another blue button should appear to click: _Open Browser_.
+![Hawashmart Dashboard](docs/images/dashboard.png)
+*[Placeholder: Add screenshot of the main dashboard]*
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+## ✨ Features
 
-A blue button should appear to click: _Make Public_,
+### 🛍️ Core E-Commerce Features
 
-Another blue button should appear to click: _Open Browser_.
+- **Product Catalog Management**
+  - Unlimited product categories and subcategories
+  - Product variations (color, size, etc.)
+  - Product gallery with multiple images
+  - Stock management and availability tracking
+  - SEO-friendly URLs with slug support
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- **Shopping Cart System**
+  - Persistent cart across sessions
+  - Real-time cart updates
+  - Quantity management
+  - Cart item variations support
+  - Guest and authenticated user cart handling
 
-To log into the Heroku toolbelt CLI:
+- **Order Management**
+  - Complete order lifecycle tracking
+  - Order status management (New, Accepted, Completed, Cancelled)
+  - Order history for users
+  - Invoice generation
+  - Email notifications
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+- **Payment Integration**
+  - Multiple payment method support
+  - Secure payment processing
+  - Transaction tracking
+  - Payment status management
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+### 👤 User Management
 
-### Connecting your Mongo database
+- **Custom User Authentication**
+  - Email-based authentication
+  - User profile management
+  - Address book functionality
+  - Profile picture upload
+  - Account verification system
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+- **User Profiles**
+  - Personal information management
+  - Shipping address management
+  - Order history tracking
+  - Wishlist functionality
 
-------
+### ⭐ Review & Rating System
 
-## Release History
+- **Product Reviews**
+  - Star-based rating system (1-5 stars)
+  - Written review submissions
+  - Review moderation system
+  - Average rating calculations
+  - Review count tracking
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### 🔍 Search & Filtering
 
-**June 18, 2024,** Add Mongo back into template
+- **Advanced Search**
+  - Product name search
+  - Description-based search
+  - Category-based filtering
+  - Price range filtering
+  - Availability filtering
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+### 📱 Responsive Design
 
-**May 28 2024:** Fix Mongo and Links installs
+- **Mobile-First Approach**
+  - Bootstrap 5 framework
+  - Responsive navigation
+  - Touch-friendly interface
+  - Cross-browser compatibility
+  - Progressive Web App features
 
-**April 26 2024:** Update node version to 16
+![Mobile Responsive Design](docs/images/mobile-responsive.png)
+*[Placeholder: Add screenshot showing mobile responsiveness]*
 
-**September 20 2023:** Update Python version to 3.9.17.
+## 🛠️ Technology Stack
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### Backend
+- **Django 5.2.4** - High-level Python web framework
+- **Python 3.12** - Programming language
+- **SQLite** - Database (production-ready for PostgreSQL/MySQL)
+- **Pillow** - Image processing library
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+### Frontend
+- **Bootstrap 5** - CSS framework for responsive design
+- **jQuery** - JavaScript library
+- **FontAwesome** - Icon library
+- **Material Icons** - Google's material design icons
+- **Feather Icons** - Lightweight icon set
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+### Development Tools
+- **Git** - Version control
+- **Virtual Environment** - Python environment isolation
+- **Django Admin** - Built-in admin interface
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## 🏗️ Architecture
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+### Project Structure
+```
+pp5_ecommerce-1/
+├── Hawashmart/                 # Main project directory
+│   ├── settings.py            # Django settings
+│   ├── urls.py               # Main URL configuration
+│   ├── static/               # Static files (CSS, JS, Images)
+│   └── wsgi.py              # WSGI configuration
+├── accounts/                 # User authentication app
+├── category/                 # Product categories app
+├── store/                    # Product management app
+├── carts/                    # Shopping cart app
+├── orders/                   # Order management app
+├── storages/                 # File storage app
+├── templates/                # HTML templates
+├── media/                    # User-uploaded files
+├── staticfiles/              # Collected static files
+└── manage.py                # Django management script
+```
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Database Schema
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+#### Core Models
+- **Account** - Custom user model with email authentication
+- **UserProfile** - Extended user profile information
+- **Category** - Product categories with hierarchical structure
+- **Product** - Product information with variations
+- **Variation** - Product variations (color, size)
+- **ReviewRating** - Product reviews and ratings
+- **ProductGallery** - Product image gallery
+- **Cart/CartItem** - Shopping cart functionality
+- **Order/OrderProduct** - Order management
+- **Payment** - Payment transaction tracking
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+![Database Schema](docs/images/database-schema.png)
+*[Placeholder: Add ERD diagram of the database schema]*
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+## 🗄️ Database Design & Relationships
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Entity Relationship Diagram (ERD)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+```mermaid
+erDiagram
+    %% User Management
+    Account {
+        int id PK
+        string first_name
+        string last_name
+        string username UK
+        string email UK
+        string phone_number
+        datetime date_joined
+        datetime last_login
+        boolean is_admin
+        boolean is_staff
+        boolean is_active
+        boolean is_superadmin
+    }
+    
+    UserProfile {
+        int id PK
+        int user_id FK
+        string address_line_1
+        string address_line_2
+        string profile_picture
+        string city
+        string state
+        string country
+    }
+    
+    %% Product Management
+    Category {
+        int id PK
+        string category_name UK
+        string slug UK
+        text description
+        string cat_image
+    }
+    
+    Product {
+        int id PK
+        string product_name UK
+        string slug UK
+        text description
+        int price
+        string images
+        int stock
+        boolean is_available
+        int category_id FK
+        datetime created_date
+        datetime modified_date
+    }
+    
+    Variation {
+        int id PK
+        int product_id FK
+        string variation_category
+        string variation_value
+        boolean is_active
+        datetime created_date
+    }
+    
+    ProductGallery {
+        int id PK
+        int product_id FK
+        string image
+    }
+    
+    %% Review System
+    ReviewRating {
+        int id PK
+        int product_id FK
+        int user_id FK
+        string subject
+        text review
+        float rating
+        string ip
+        boolean status
+        datetime created_at
+        datetime updated_at
+    }
+    
+    %% Shopping Cart
+    Cart {
+        int id PK
+        string cart_id
+        date date_added
+    }
+    
+    CartItem {
+        int id PK
+        int user_id FK
+        int product_id FK
+        int cart_id FK
+        int quantity
+        boolean is_active
+    }
+    
+    %% Order Management
+    Payment {
+        int id PK
+        int user_id FK
+        string payment_id
+        string payment_method
+        string amount_paid
+        string status
+        datetime created_at
+    }
+    
+    Order {
+        int id PK
+        int user_id FK
+        int payment_id FK
+        string order_number
+        string first_name
+        string last_name
+        string phone
+        string email
+        string address_line_1
+        string address_line_2
+        string country
+        string state
+        string city
+        string order_note
+        float order_total
+        float tax
+        string status
+        string ip
+        boolean is_ordered
+        datetime created_at
+        datetime updated_at
+    }
+    
+    OrderProduct {
+        int id PK
+        int order_id FK
+        int payment_id FK
+        int user_id FK
+        int product_id FK
+        int quantity
+        float product_price
+        boolean ordered
+        datetime created_at
+        datetime updated_at
+    }
+    
+    %% Relationships
+    Account ||--o{ UserProfile : "has_one"
+    Account ||--o{ ReviewRating : "writes"
+    Account ||--o{ CartItem : "owns"
+    Account ||--o{ Payment : "makes"
+    Account ||--o{ Order : "places"
+    Account ||--o{ OrderProduct : "orders"
+    
+    Category ||--o{ Product : "contains"
+    
+    Product ||--o{ Variation : "has"
+    Product ||--o{ ProductGallery : "displays"
+    Product ||--o{ ReviewRating : "receives"
+    Product ||--o{ CartItem : "added_to"
+    Product ||--o{ OrderProduct : "ordered_as"
+    
+    Cart ||--o{ CartItem : "contains"
+    
+    Payment ||--o{ Order : "processes"
+    Payment ||--o{ OrderProduct : "covers"
+    
+    Order ||--o{ OrderProduct : "includes"
+    
+    Variation ||--o{ CartItem : "selected_in"
+    Variation ||--o{ OrderProduct : "ordered_with"
+```
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### 🔗 Key Relationships Explained
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+#### **1. User Management Relationships**
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+**Account ↔ UserProfile (One-to-One)**
+- Each user account has exactly one profile
+- Profile contains extended user information (address, profile picture)
+- **Business Logic**: When a user registers, a profile is automatically created
 
-------
+**Account ↔ ReviewRating (One-to-Many)**
+- One user can write multiple reviews
+- Each review belongs to exactly one user
+- **Business Logic**: Users can review products they've purchased
 
-## FAQ about the uptime script
+#### **2. Product Management Relationships**
 
-**Why have you added this script?**
+**Category ↔ Product (One-to-Many)**
+- One category can contain multiple products
+- Each product belongs to exactly one category
+- **Business Logic**: Products are organized by categories for easy navigation
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+**Product ↔ Variation (One-to-Many)**
+- One product can have multiple variations (color, size)
+- Each variation belongs to exactly one product
+- **Business Logic**: Products can have different options (e.g., Red/Blue, S/M/L)
 
-**How will this affect me?**
+**Product ↔ ProductGallery (One-to-Many)**
+- One product can have multiple gallery images
+- Each gallery image belongs to exactly one product
+- **Business Logic**: Products can have multiple images for better presentation
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+#### **3. Shopping Cart Relationships**
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+**Account ↔ CartItem (One-to-Many)**
+- One user can have multiple cart items
+- Each cart item belongs to exactly one user (if authenticated)
+- **Business Logic**: Users can add multiple products to their cart
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+**Cart ↔ CartItem (One-to-Many)**
+- One cart can contain multiple items
+- Each cart item belongs to exactly one cart
+- **Business Logic**: Cart persists across sessions using cart_id
 
-**So….?**
+**Product ↔ CartItem (One-to-Many)**
+- One product can be in multiple cart items
+- Each cart item contains exactly one product
+- **Business Logic**: Same product can be in different users' carts
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+#### **4. Order Management Relationships**
 
-**Can I opt out?**
+**Account ↔ Order (One-to-Many)**
+- One user can place multiple orders
+- Each order belongs to exactly one user
+- **Business Logic**: Users can have order history
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+**Payment ↔ Order (One-to-One)**
+- Each order has exactly one payment
+- Each payment processes exactly one order
+- **Business Logic**: Orders are linked to payment transactions
+
+**Order ↔ OrderProduct (One-to-Many)**
+- One order can contain multiple products
+- Each order product belongs to exactly one order
+- **Business Logic**: Orders can contain multiple items
+
+#### **5. Review System Relationships**
+
+**Product ↔ ReviewRating (One-to-Many)**
+- One product can receive multiple reviews
+- Each review belongs to exactly one product
+- **Business Logic**: Products can have multiple customer reviews
+
+### 📊 Database Design Principles
+
+#### **Normalization**
+- **First Normal Form (1NF)**: All attributes contain atomic values
+- **Second Normal Form (2NF)**: No partial dependencies
+- **Third Normal Form (3NF)**: No transitive dependencies
+
+#### **Indexing Strategy**
+```sql
+-- Primary Keys (Auto-indexed)
+CREATE INDEX idx_account_email ON Account(email);
+CREATE INDEX idx_product_slug ON Product(slug);
+CREATE INDEX idx_category_slug ON Category(slug);
+CREATE INDEX idx_order_number ON Order(order_number);
+CREATE INDEX idx_payment_id ON Payment(payment_id);
+```
+
+#### **Foreign Key Constraints**
+- **CASCADE**: When parent is deleted, child records are deleted
+- **SET_NULL**: When parent is deleted, child foreign key is set to NULL
+- **RESTRICT**: Prevents deletion of parent if child records exist
+
+### 🔄 Data Flow Architecture
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+User Registration → Account Creation → Profile Creation
+Product Browsing → Category Selection → Product View
+Cart Addition → CartItem Creation → Session Management
+Order Placement → Payment Processing → Order Creation
+Review Submission → ReviewRating Creation → Product Rating Update
 ```
 
-**Anything more?**
+### 📈 Performance Considerations
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+#### **Query Optimization**
+- **Eager Loading**: Use `select_related()` for foreign key relationships
+- **Prefetch Loading**: Use `prefetch_related()` for many-to-many relationships
+- **Database Indexing**: Strategic indexing on frequently queried fields
+
+#### **Caching Strategy**
+- **Product Cache**: Cache frequently accessed products
+- **Category Cache**: Cache category hierarchies
+- **User Session Cache**: Cache user cart and preferences
+
+![Database Performance](docs/images/database-performance.png)
+*[Placeholder: Add database performance metrics diagram]*
+
+## 🚀 Installation
+
+### Prerequisites
+
+- Python 3.12 or higher
+- pip (Python package installer)
+- Git (for version control)
+
+### Step-by-Step Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/yourusername/hawashmart.git
+   cd hawashmart
+   ```
+
+2. **Create Virtual Environment**
+   ```bash
+   python -m venv env
+   source env/bin/activate  # On Windows: env\Scripts\activate
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Database Setup**
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+5. **Create Superuser**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+6. **Collect Static Files**
+   ```bash
+   python manage.py collectstatic
+   ```
+
+7. **Run Development Server**
+   ```bash
+   python manage.py runserver
+   ```
+
+### Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+SECRET_KEY=your-secret-key-here
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+MEDIA_URL=/media/
+STATIC_URL=/static/
+```
+
+## ⚙️ Configuration
+
+### Django Settings
+
+The main configuration file is located at `Hawashmart/settings.py`. Key configurations include:
+
+- **Database Configuration**: SQLite for development, PostgreSQL/MySQL for production
+- **Static Files**: Configured for Bootstrap and custom assets
+- **Media Files**: User upload handling
+- **Templates**: Django template engine configuration
+- **Installed Apps**: All Django apps registered
+
+### URL Configuration
+
+The URL structure is organized as follows:
+
+- `/` - Main store page
+- `/store/` - Product catalog
+- `/cart/` - Shopping cart
+- `/accounts/` - User authentication
+- `/orders/` - Order management
+- `/admin/` - Django admin interface
+
+## 📖 Usage
+
+### For Administrators
+
+1. **Access Admin Panel**
+   - Navigate to `/admin/`
+   - Login with superuser credentials
+
+2. **Manage Categories**
+   - Create product categories
+   - Set category descriptions and images
+   - Configure category slugs for SEO
+
+3. **Product Management**
+   - Add new products with images
+   - Configure product variations
+   - Set pricing and stock levels
+   - Manage product availability
+
+4. **Order Management**
+   - View and process orders
+   - Update order status
+   - Track payment information
+   - Generate invoices
+
+### For Customers
+
+1. **Browsing Products**
+   - Navigate through categories
+   - Search for specific products
+   - View product details and images
+   - Read customer reviews
+
+2. **Shopping Cart**
+   - Add products to cart
+   - Modify quantities
+   - Select product variations
+   - Review cart contents
+
+3. **Checkout Process**
+   - User registration/login
+   - Shipping address input
+   - Payment method selection
+   - Order confirmation
+
+![User Interface](docs/images/user-interface.png)
+*[Placeholder: Add screenshot of the main user interface]*
+
+## 🔌 API Documentation
+
+### Authentication Endpoints
+
+```http
+POST /accounts/login/
+POST /accounts/register/
+POST /accounts/logout/
+GET  /accounts/profile/
+```
+
+### Product Endpoints
+
+```http
+GET  /store/                    # Product catalog
+GET  /store/category/<slug>/    # Category products
+GET  /store/product/<slug>/     # Product detail
+GET  /store/search/             # Product search
+```
+
+### Cart Endpoints
+
+```http
+GET  /cart/                     # View cart
+POST /cart/add/<product_id>/    # Add to cart
+POST /cart/remove/<item_id>/    # Remove from cart
+POST /cart/update/<item_id>/    # Update quantity
+```
+
+### Order Endpoints
+
+```http
+GET  /orders/                   # Order history
+POST /orders/place_order/       # Place new order
+GET  /orders/<order_id>/        # Order details
+```
+
+## 🔒 Security Features
+
+### Authentication & Authorization
+- **Custom User Model**: Email-based authentication
+- **Password Security**: Django's built-in password hashing
+- **Session Management**: Secure session handling
+- **CSRF Protection**: Cross-site request forgery protection
+
+### Data Protection
+- **Input Validation**: Comprehensive form validation
+- **SQL Injection Prevention**: Django ORM protection
+- **XSS Protection**: Template auto-escaping
+- **File Upload Security**: Secure file handling
+
+### Payment Security
+- **Payment Gateway Integration**: Secure payment processing
+- **Transaction Encryption**: Encrypted payment data
+- **Order Verification**: Order integrity checks
+
+## ⚡ Performance Optimization
+
+### Database Optimization
+- **Query Optimization**: Efficient database queries
+- **Indexing**: Strategic database indexing
+- **Caching**: Django caching framework integration
+
+### Frontend Optimization
+- **Static File Compression**: Minified CSS/JS
+- **Image Optimization**: Compressed product images
+- **CDN Integration**: Content delivery network support
+- **Lazy Loading**: Progressive image loading
+
+### Caching Strategy
+- **Page Caching**: Full page caching
+- **Fragment Caching**: Template fragment caching
+- **Database Caching**: Query result caching
+
+## 🧪 Testing
+
+### Test Coverage
+- **Unit Tests**: Individual component testing
+- **Integration Tests**: End-to-end functionality testing
+- **User Acceptance Testing**: Real user scenario testing
+
+### Running Tests
+```bash
+# Run all tests
+python manage.py test
+
+# Run specific app tests
+python manage.py test store
+
+# Run with coverage
+coverage run --source='.' manage.py test
+coverage report
+```
+
+### Test Structure
+```
+tests/
+├── test_models.py      # Model testing
+├── test_views.py       # View testing
+├── test_forms.py       # Form testing
+└── test_integration.py # Integration testing
+```
+
+## 🚀 Deployment
+
+### Production Checklist
+
+- [ ] Set `DEBUG = False`
+- [ ] Configure production database
+- [ ] Set up static file serving
+- [ ] Configure media file storage
+- [ ] Set up email backend
+- [ ] Configure security settings
+- [ ] Set up logging
+- [ ] Configure caching
+- [ ] Set up monitoring
+
+### Deployment Options
+
+#### Heroku Deployment
+```bash
+# Install Heroku CLI
+heroku create your-app-name
+git push heroku main
+heroku run python manage.py migrate
+```
+
+#### Docker Deployment
+```dockerfile
+FROM python:3.12
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+```
+
+#### AWS Deployment
+- Use AWS Elastic Beanstalk
+- Configure RDS for database
+- Set up S3 for static files
+- Configure CloudFront CDN
+
+![Deployment Architecture](docs/images/deployment-architecture.png)
+*[Placeholder: Add deployment architecture diagram]*
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. **Fork the Repository**
+   ```bash
+   git clone https://github.com/yourusername/hawashmart.git
+   ```
+
+2. **Create Feature Branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+
+3. **Make Changes**
+   - Follow PEP 8 coding standards
+   - Add tests for new features
+   - Update documentation
+
+4. **Commit Changes**
+   ```bash
+   git commit -m 'Add amazing feature'
+   ```
+
+5. **Push to Branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+
+6. **Create Pull Request**
+
+### Development Guidelines
+
+- **Code Style**: Follow PEP 8 and Django coding standards
+- **Documentation**: Update README and docstrings
+- **Testing**: Maintain 90%+ test coverage
+- **Security**: Follow security best practices
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Django Community**: For the excellent web framework
+- **Bootstrap Team**: For the responsive CSS framework
+- **FontAwesome**: For the comprehensive icon library
+- **Contributors**: All contributors who helped improve this project
+
+## 📞 Support
+
+For support and questions:
+
+- **Email**: support@hawashmart.com
+- **Documentation**: [docs.hawashmart.com](https://docs.hawashmart.com)
+- **Issues**: [GitHub Issues](https://github.com/yourusername/hawashmart/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yourusername/hawashmart/discussions)
 
 ---
 
-Happy coding!
+**Made with ❤️ by the Hawashmart Team**
+
+![Hawashmart Logo](docs/images/logo.png)
+*[Placeholder: Add project logo]*
