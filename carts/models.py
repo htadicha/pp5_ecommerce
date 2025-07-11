@@ -4,7 +4,13 @@ from accounts.models import Account
 
 
 class Cart(models.Model):
-    """Model for shopping cart sessions."""
+    """
+    Model for shopping cart sessions.
+    
+    Represents a shopping cart session that can contain multiple cart items.
+    Each cart is identified by a unique cart_id and tracks when it was created.
+    Used for both guest and authenticated user shopping sessions.
+    """
     cart_id = models.CharField(max_length=250, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
@@ -14,7 +20,13 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    """Model for individual items in shopping cart."""
+    """
+    Model for individual items in shopping cart.
+    
+    Represents a single product item added to a shopping cart. Can include
+    product variations (color, size) and quantity. Links to both user account
+    (for authenticated users) and cart session (for guest users).
+    """
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variations = models.ManyToManyField(Variation, blank=True)

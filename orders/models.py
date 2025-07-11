@@ -4,7 +4,13 @@ from store.models import Product, Variation
 
 
 class Payment(models.Model):
-    """Model for payment transactions."""
+    """
+    Model for payment transactions.
+    
+    Stores payment information for orders including payment method, amount,
+    status, and transaction details. Links to user accounts and orders
+    for complete payment tracking and history.
+    """
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
@@ -18,7 +24,13 @@ class Payment(models.Model):
 
 
 class Order(models.Model):
-    """Model for customer orders."""
+    """
+    Model for customer orders.
+    
+    Represents a complete customer order with shipping information, payment
+    details, and order status tracking. Includes customer contact information,
+    shipping address, order totals, and status management for order processing.
+    """
     STATUS = (
         ('New', 'New'),
         ('Accepted', 'Accepted'),
@@ -61,7 +73,13 @@ class Order(models.Model):
 
 
 class OrderProduct(models.Model):
-    """Model for individual products in an order."""
+    """
+    Model for individual products in an order.
+    
+    Represents a specific product item within an order, including quantity,
+    price at time of purchase, and any product variations. Links to the
+    main order, payment, user, and product for complete order tracking.
+    """
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
