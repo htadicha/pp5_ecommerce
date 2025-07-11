@@ -3,20 +3,22 @@ from accounts.models import Account
 from store.models import Product, Variation
 
 
-
 class Payment(models.Model):
+    """Model for payment transactions."""
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     payment_id = models.CharField(max_length=100)
     payment_method = models.CharField(max_length=100)
-    amount_paid = models.CharField(max_length=100) # this is the total amount paid
+    amount_paid = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        """Return the payment ID as string representation."""
         return self.payment_id
 
 
 class Order(models.Model):
+    """Model for customer orders."""
     STATUS = (
         ('New', 'New'),
         ('Accepted', 'Accepted'),
@@ -45,18 +47,21 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
     def full_name(self):
+        """Return the customer's full name."""
         return f'{self.first_name} {self.last_name}'
 
     def full_address(self):
+        """Return the customer's complete address."""
         return f'{self.address_line_1} {self.address_line_2}'
 
     def __str__(self):
+        """Return the customer's first name as string representation."""
         return self.first_name
 
 
 class OrderProduct(models.Model):
+    """Model for individual products in an order."""
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -69,4 +74,5 @@ class OrderProduct(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
+        """Return the product name as string representation."""
         return self.product.product_name

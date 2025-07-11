@@ -3,7 +3,6 @@ from .models import Product, ReviewRating, ProductGallery
 from category.models import Category
 from carts.models import CartItem
 from django.db.models import Q
-
 from carts.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
@@ -13,6 +12,7 @@ from orders.models import OrderProduct
 
 
 def store(request, category_slug=None):
+    """Display products with optional category filtering and pagination."""
     categories = None
     products = None
 
@@ -22,7 +22,6 @@ def store(request, category_slug=None):
     else:
         products = Product.objects.all().filter(is_available=True).order_by('id')
 
-    # Set pagination to 16 items per page (4 columns x 4 rows)
     paginator = Paginator(products, 16)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
@@ -36,6 +35,7 @@ def store(request, category_slug=None):
 
 
 def product_detail(request, category_slug, product_slug):
+    """Display detailed product information with reviews and gallery."""
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
@@ -50,10 +50,7 @@ def product_detail(request, category_slug, product_slug):
     else:
         orderproduct = None
 
-    # Get the reviews
     reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
-
-    # Get the product gallery
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
 
     context = {
@@ -67,6 +64,7 @@ def product_detail(request, category_slug, product_slug):
 
 
 def search(request):
+    """Search products by name or description keywords."""
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
@@ -80,6 +78,7 @@ def search(request):
 
 
 def submit_review(request, product_id):
+    """Submit or update a product review."""
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
         try:
