@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -10,7 +12,7 @@ class MyAccountManager(BaseUserManager):
             raise ValueError('User must have an email address')
 
         if not username:
-            raise ValueError('User must have an username')
+            raise ValueError('User must have a username')
 
         user = self.model(
             email = self.normalize_email(email),
@@ -87,3 +89,20 @@ class UserProfile(models.Model):
 
     def full_address(self):
         return f'{self.address_line_1} {self.address_line_2}'
+
+
+# Signal to create a UserProfile automatically when a new Account is created.
+@receiver(post_save, sender=Account)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+# Signal to save the UserProfile when the Account is saved.
+@receiver(post_save, sender=Account)
+def save_user_profile(sender, instance, **kwargs):
+    try:
+        instance.userprofile.save()
+    except UserProfile.DoesNotExist:
+        # This handles the case for existing users who might not have a profile yet
+        UserProfile.objects.create(user=instance)
+
