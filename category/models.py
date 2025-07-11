@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
+
+
 class Category(models.Model):
+    """Model for product categories."""
     category_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(max_length=255, blank=True)
@@ -11,7 +14,9 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
     def get_url(self):
-            return reverse('products_by_category', args=[self.slug])
+        """Return the URL for the category products page."""
+        return reverse('products_by_category', args=[self.slug])
 
     def __str__(self):
+        """Return the category name as string representation."""
         return self.category_name
