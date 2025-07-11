@@ -32,7 +32,7 @@
   }
 
   .section-header .logo {
-    max-height: 40px;
+    height: 120px;
     width: auto;
   }
   .section-header .header-main .brand-wrap {

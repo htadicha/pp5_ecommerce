@@ -32,7 +32,10 @@ def register(request):
             user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
             user.phone_number = phone_number
             user.save()
-           
+
+            # The signal creates the UserProfile, and we assign a default picture here.
+            user.userprofile.profile_picture = 'userprofile/default-user.png'
+            user.userprofile.save()
 
 
             # USER ACTIVATION
