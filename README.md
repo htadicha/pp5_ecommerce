@@ -37,8 +37,8 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
 - **Responsive Design**: Modern, mobile-first UI with Bootstrap framework
 - **Admin Dashboard**: Powerful Django admin interface for complete store management
 
-![Hawashmart Dashboard](docs/images/dashboard.png)
-*[Placeholder: Add screenshot of the main dashboard]*
+![Hawashmart Home Page](static/images/home_page.png)
+*Hawashmart Home Page - Main landing page with featured products and categories*
 
 ## ✨ Features
 
@@ -51,7 +51,8 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Stock management and availability tracking
   - SEO-friendly URLs with slug support
 
-![Hawashmart Dashboard](docs/images/dashboard.png)
+![Product Detail Page](static/images/product_detail.png)
+*Product Detail Page - Comprehensive product information with images, reviews, and purchase options*
 - **Shopping Cart System**
   - Persistent cart across sessions
   - Real-time cart updates
@@ -59,7 +60,8 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Cart item variations support
   - Guest and authenticated user cart handling
 
-![Hawashmart Dashboard](docs/images/dashboard.png)
+![Shopping Cart](static/images/Cart.png)
+*Shopping Cart - User-friendly cart interface with item management and checkout options*
 
 - **Order Management**
   - Complete order lifecycle tracking
@@ -67,7 +69,12 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Order history for users
   - Invoice generation
   - Email notifications
-![Hawashmart Dashboard](docs/images/dashboard.png)
+
+![Checkout Process](static/images/checkout.png)
+*Checkout Process - Streamlined checkout flow with order summary and payment options*
+
+![Order History](static/images/order_history.png)
+*Order History - Complete order tracking and history management for users*
 
 - **Payment Integration**
   - Multiple payment method support
@@ -75,7 +82,8 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Transaction tracking
   - Payment status management
 
-![Hawashmart Dashboard](docs/images/dashboard.png)
+![Stripe Payment Integration](static/images/stripe_payment.png)
+*Stripe Payment Integration - Secure payment processing with multiple payment methods*
 ### 👤 User Management
 
 - **Custom User Authentication**
@@ -101,6 +109,8 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Average rating calculations
   - Review count tracking
 ![Hawashmart Dashboard](docs/images/dashboard.png)
+![Reviews](static/images/reviews.png)
+*Reviews - Comprehensive product review and rating functionality*
 ### 🔍 Search & Filtering
 
 - **Advanced Search**
@@ -141,6 +151,9 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
 - **Git** - Version control
 - **Virtual Environment** - Python environment isolation
 - **Django Admin** - Built-in admin interface
+
+![Admin Panel](static/images/admin_panel.png)
+*Admin Panel - Comprehensive Django admin interface for store management*
 
 ## 🏗️ Architecture
 
@@ -930,8 +943,8 @@ Stay connected with Hawashmart across all major social media platforms for the l
 - **Content**: Product launches, customer testimonials, live shopping events
 - **Engagement**: Daily posts, interactive polls, community discussions
 
-![Hawashmart Facebook Profile](docs/images/social/facebook-profile.png)
-*[Placeholder: Add screenshot of Hawashmart Facebook profile]*
+![Hawashmart Facebook Page](static/images/fb-page.png)
+*Hawashmart Facebook Page - Official Facebook business page with product showcases and community engagement*
 
 #### **📷 Instagram**
 - **Profile**: [@hawashmart](https://instagram.com/hawashmart)
