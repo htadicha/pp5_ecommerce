@@ -29,6 +29,13 @@
     {% for product in products %}
     <div class="col-md-3">
         <div class="card card-product-grid">
+            <!-- Add the label here -->
+            {% if product.is_new %}
+                <span class="product-label new">New</span>
+            {% elif product.is_trending %}
+                <span class="product-label trending">Trending</span>
+            {% endif %}
+
             <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
             <figcaption class="info-wrap">
                 <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>

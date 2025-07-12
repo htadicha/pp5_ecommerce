@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import Account
-from store.models import Product, Variation
+from store.models import Product # Removed the import for 'Variation'
 
 
 class Payment(models.Model):
@@ -68,8 +68,8 @@ class Order(models.Model):
         return f'{self.address_line_1} {self.address_line_2}'
 
     def __str__(self):
-        """Return the customer's first name as string representation."""
-        return self.first_name
+        """Return the order number as string representation."""
+        return self.order_number
 
 
 class OrderProduct(models.Model):
@@ -84,7 +84,8 @@ class OrderProduct(models.Model):
     payment = models.ForeignKey(Payment, on_delete=models.SET_NULL, blank=True, null=True)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variations = models.ManyToManyField(Variation, blank=True)
+    # The 'variations' field is no longer needed.
+    # variations = models.ManyToManyField(Variation, blank=True)
     quantity = models.IntegerField()
     product_price = models.FloatField()
     ordered = models.BooleanField(default=False)

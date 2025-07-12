@@ -51,6 +51,7 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Stock management and availability tracking
   - SEO-friendly URLs with slug support
 
+![Hawashmart Dashboard](docs/images/dashboard.png)
 - **Shopping Cart System**
   - Persistent cart across sessions
   - Real-time cart updates
@@ -58,12 +59,15 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Cart item variations support
   - Guest and authenticated user cart handling
 
+![Hawashmart Dashboard](docs/images/dashboard.png)
+
 - **Order Management**
   - Complete order lifecycle tracking
   - Order status management (New, Accepted, Completed, Cancelled)
   - Order history for users
   - Invoice generation
   - Email notifications
+![Hawashmart Dashboard](docs/images/dashboard.png)
 
 - **Payment Integration**
   - Multiple payment method support
@@ -71,6 +75,7 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Transaction tracking
   - Payment status management
 
+![Hawashmart Dashboard](docs/images/dashboard.png)
 ### 👤 User Management
 
 - **Custom User Authentication**
@@ -85,6 +90,7 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Shipping address management
   - Order history tracking
   - Wishlist functionality
+![Hawashmart Dashboard](docs/images/dashboard.png)
 
 ### ⭐ Review & Rating System
 
@@ -94,7 +100,7 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Review moderation system
   - Average rating calculations
   - Review count tracking
-
+![Hawashmart Dashboard](docs/images/dashboard.png)
 ### 🔍 Search & Filtering
 
 - **Advanced Search**
@@ -103,7 +109,7 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Category-based filtering
   - Price range filtering
   - Availability filtering
-
+![Hawashmart Dashboard](docs/images/dashboard.png)
 ### 📱 Responsive Design
 
 - **Mobile-First Approach**
@@ -171,9 +177,6 @@ pp5_ecommerce-1/
 - **Cart/CartItem** - Shopping cart functionality
 - **Order/OrderProduct** - Order management
 - **Payment** - Payment transaction tracking
-
-![Database Schema](docs/images/database-schema.png)
-*[Placeholder: Add ERD diagram of the database schema]*
 
 ## 🗄️ Database Design & Relationships
 
