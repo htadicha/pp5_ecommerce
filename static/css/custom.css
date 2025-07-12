@@ -59,3 +59,32 @@ ul.thumb li img{
   height: 80px;
   border: 1px solid grey;
 }
+.card-product-grid {
+  position: relative;
+  overflow: hidden; /* Keeps the label corners neat */
+}
+
+/* The label itself */
+.product-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: lighter;
+  color: white;
+  border-radius: 3px;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+/* Green color for Trending products */
+.product-label.trending {
+  background-color: #86ee9f; /* A nice green color */
+}
+
+/* Blue color for New products */
+.product-label.new {
+  background-color: #5bd7ea; /* A standard blue color */
+}
+

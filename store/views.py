@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Product, ReviewRating, ProductGallery
 from category.models import Category
 from carts.models import CartItem
-from django.db.models import Q
+from django.db.models import Q, Avg
 from carts.views import _cart_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
@@ -13,20 +13,29 @@ from orders.models import OrderProduct
 
 def store(request, category_slug=None):
     """
-    Display products with optional category filtering and pagination.
-    
-    Handles the main store page view with support for category filtering.
-    Implements pagination for better performance with large product catalogs.
-    Returns filtered products based on category slug or all available products.
+    Display products with optional category filtering, sorting, and pagination.
     """
     categories = None
     products = None
 
     if category_slug != None:
         categories = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=categories, is_available=True).order_by('id')
+        products = Product.objects.filter(category=categories, is_available=True)
     else:
-        products = Product.objects.all().filter(is_available=True).order_by('id')
+        products = Product.objects.all().filter(is_available=True)
+
+    sort_option = request.GET.get('sort')
+
+    if sort_option == 'price_lh':
+        products = products.order_by('price')
+    elif sort_option == 'alpha_az':
+        products = products.order_by('product_name')
+    elif sort_option == 'alpha_za':
+        products = products.order_by('-product_name')
+    elif sort_option == 'rating':
+        products = products.annotate(avg_rating=Avg('reviewrating__rating')).order_by('-avg_rating')
+    else:
+        products = products.order_by('-created_date')
 
     paginator = Paginator(products, 16)
     page = request.GET.get('page')
@@ -43,17 +52,17 @@ def store(request, category_slug=None):
 def product_detail(request, category_slug, product_slug):
     """
     Display detailed product information with reviews and gallery.
-    
-    Shows comprehensive product details including images, reviews, ratings,
-    and related information. Checks if product is in user's cart and if
-    user has previously purchased the product for review eligibility.
     """
     try:
+        # Get the single product
         single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+        # Check if the product is already in the cart
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
     except Exception as e:
+        # It's better to handle specific exceptions, but for now we'll re-raise
         raise e
 
+    # Check if the user has purchased this product before to allow reviews
     if request.user.is_authenticated:
         try:
             orderproduct = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
@@ -62,9 +71,12 @@ def product_detail(request, category_slug, product_slug):
     else:
         orderproduct = None
 
+    # Get the reviews and gallery images for the product
     reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
 
+    # The context now only needs the single_product. The template will handle
+    # accessing the variations via `single_product.variation_set.all()`
     context = {
         'single_product': single_product,
         'in_cart'       : in_cart,
@@ -78,11 +90,9 @@ def product_detail(request, category_slug, product_slug):
 def search(request):
     """
     Search products by name or description keywords.
-    
-    Implements product search functionality using case-insensitive text matching
-    on product names and descriptions. Returns filtered products based on
-    search keywords provided in the request.
     """
+    products = None # Initialize products to None
+    product_count = 0
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
@@ -98,10 +108,6 @@ def search(request):
 def submit_review(request, product_id):
     """
     Submit or update a product review.
-    
-    Handles review submission and updates for authenticated users.
-    Creates new reviews or updates existing ones based on user's previous
-    review history. Includes validation and success message handling.
     """
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':

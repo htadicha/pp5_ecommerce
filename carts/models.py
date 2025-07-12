@@ -1,5 +1,5 @@
 from django.db import models
-from store.models import Product, Variation
+from store.models import Product # Removed the import for 'Variation'
 from accounts.models import Account
 
 
@@ -29,7 +29,8 @@ class CartItem(models.Model):
     """
     user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variations = models.ManyToManyField(Variation, blank=True)
+    # The 'variations' field is no longer needed as each product now has its own size/color.
+    # variations = models.ManyToManyField(Variation, blank=True)
     cart    = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
@@ -38,6 +39,6 @@ class CartItem(models.Model):
         """Calculate the subtotal for this cart item."""
         return self.product.price * self.quantity
 
-    def __unicode__(self):
+    def __str__(self):
         """Return the product as string representation."""
-        return self.product
+        return self.product.product_name
