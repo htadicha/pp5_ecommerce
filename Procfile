@@ -1,1 +1,1 @@
-web: gunicorn Hawashmart.wsgi.application
+web: gunicorn Hawashmart.wsgi:application
