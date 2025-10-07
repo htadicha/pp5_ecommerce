@@ -98,7 +98,7 @@ USE_TZ = True
 
 
 # Static and Media files configuration
-if 'USE_AWS' in os.environ:
+if config('USE_AWS', default=False, cast=bool):
     # AWS S3 Configuration for Production
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
