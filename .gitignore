@@ -10,3 +10,5 @@ cloudinary_python.txt
 .env
 .env.backup
 *.env
+!.env.example
+PRODUCTION_SECRET_KEY.txt
