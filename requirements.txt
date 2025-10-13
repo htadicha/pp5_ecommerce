@@ -22,8 +22,8 @@ dj-database-url==0.5.0
 Django==3.2.25
 django-admin-thumbnails==0.2.9
 django-allauth==0.54.0
-django-bootstrap4==24.4
-django-bootstrap5==24.3
+django-bootstrap4==22.3
+django-bootstrap5==22.2
 django-ckeditor==6.7.1
 django-ckeditor-5==0.2.15
 django-cloudinary-storage==0.3.0
