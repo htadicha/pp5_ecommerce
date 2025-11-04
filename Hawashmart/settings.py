@@ -115,7 +115,7 @@ if USE_AWS:
     }
     
     # Media files go to S3 with public-read access
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'hawashmart.custom_storages.MediaStorage'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
     
@@ -125,7 +125,8 @@ if USE_AWS:
     STATICFILES_DIRS = [
         BASE_DIR / 'static',
     ]
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+    # Use Django's default storage - WhiteNoise middleware handles compression
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 else:
     # Local Static and Media files configuration
     STATIC_URL = '/static/'
@@ -135,8 +136,8 @@ else:
     ]
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
-    # Use WhiteNoise for serving static files - use CompressedStaticFilesStorage for Heroku
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+    # Use Django's default storage - WhiteNoise middleware handles compression
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 # Default primary key field type
