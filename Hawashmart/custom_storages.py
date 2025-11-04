@@ -13,4 +13,14 @@ class MediaStorage(S3Boto3Storage):
     location = 'media'
     default_acl = 'public-read'
     file_overwrite = False
+    
+    def url(self, name):
+        """
+        Override url to ensure it returns the correct public URL without query strings.
+        """
+        url = super().url(name)
+        # Remove query string authentication if present
+        if '?' in url:
+            url = url.split('?')[0]
+        return url
 

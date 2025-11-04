@@ -98,7 +98,9 @@ USE_TZ = True
 
 
 # Static and Media files configuration
-if config('USE_AWS', default=False, cast=bool):
+USE_AWS = config('USE_AWS', default=False, cast=bool)
+
+if USE_AWS:
     # AWS S3 Configuration for Production - Media files only
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')

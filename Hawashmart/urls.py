@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 from . import views
 
 urlpatterns = [
@@ -30,4 +31,17 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('orders/', include('orders.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Serve media files
+if settings.DEBUG:
+    # In development, serve media files through Django
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # In production, serve media files if not using AWS (fallback)
+    # If using AWS, media files are served directly from S3
+    use_aws = getattr(settings, 'USE_AWS', False)
+    if not use_aws:
+        urlpatterns += [
+            path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
+        ]
