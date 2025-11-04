@@ -98,37 +98,31 @@ USE_TZ = True
 
 
 # Static and Media files configuration
-# Static and Media files configuration
 if config('USE_AWS', default=False, cast=bool):
-    # AWS S3 Configuration for Production
+    # AWS S3 Configuration for Production - Media files only
     AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_FILE_OVERWRITE = False
-    AWS_DEFAULT_ACL = 'public-read'  # Important for static files to be accessible
+    AWS_DEFAULT_ACL = None
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
     
-    # Static files location
-    AWS_LOCATION = 'static'
-    
-    # S3 Static and Media files configuration
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # Media files go to S3
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
     
-    # Static files configuration
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    # Static files use WhiteNoise (works better on Heroku)
+    STATIC_URL = '/static/'
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
     STATICFILES_DIRS = [
         BASE_DIR / 'static',
     ]
-    
-    # Media files configuration
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-    MEDIA_ROOT = BASE_DIR / 'media'
-
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 else:
     # Local Static and Media files configuration
     STATIC_URL = '/static/'
