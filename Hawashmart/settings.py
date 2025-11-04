@@ -107,12 +107,13 @@ if config('USE_AWS', default=False, cast=bool):
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
+    AWS_QUERYSTRING_AUTH = False  # Don't use query string authentication for public files
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
     
-    # Media files go to S3
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # Media files go to S3 with public-read access
+    DEFAULT_FILE_STORAGE = 'Hawashmart.custom_storages.MediaStorage'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
     
