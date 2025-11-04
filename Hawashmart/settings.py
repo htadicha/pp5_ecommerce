@@ -125,7 +125,7 @@ if USE_AWS:
     STATICFILES_DIRS = [
         BASE_DIR / 'static',
     ]
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 else:
     # Local Static and Media files configuration
     STATIC_URL = '/static/'
