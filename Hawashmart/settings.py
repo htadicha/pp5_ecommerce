@@ -108,7 +108,7 @@ if USE_AWS:
     AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
     AWS_S3_FILE_OVERWRITE = False
-    AWS_DEFAULT_ACL = None
+    # AWS_DEFAULT_ACL is set by MediaStorage class, don't override here
     AWS_QUERYSTRING_AUTH = False  # Don't use query string authentication for public files
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
