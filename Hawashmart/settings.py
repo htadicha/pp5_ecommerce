@@ -115,6 +115,7 @@ if USE_AWS:
     }
     
     # Media files go to S3 with public-read access
+    # Note: Must use 'Hawashmart' (capital H) to match the directory name
     DEFAULT_FILE_STORAGE = 'Hawashmart.custom_storages.MediaStorage'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
     MEDIA_ROOT = BASE_DIR / 'media'
