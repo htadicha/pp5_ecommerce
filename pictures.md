@@ -38,6 +38,26 @@ This file contains all the image references used in the README.md documentation.
 ![Hawashmart Facebook Page](static/images/fb_page.png)
 *Hawashmart Facebook Page - Official Facebook business page with product showcases and community engagement*
 
+## 💳 Checkout Process - Alternative View
+![Checkout Process Alternative](static/images/checkout2.png)
+*Checkout Process Alternative View - Additional checkout interface with enhanced payment options*
+
+## 📊 Order Dashboard
+![Order Dashboard](static/images/order_dashboard.png)
+*Order Dashboard - Comprehensive order management and tracking dashboard for administrators*
+
+## ✅ Payment Success
+![Payment Success](static/images/payment_success.png)
+*Payment Success - Payment confirmation screen after successful transaction completion*
+
+## 🔐 Stripe Payment Gateway
+![Stripe Payment Gateway](static/images/stripe_payment_gateway.png)
+*Stripe Payment Gateway - Detailed view of Stripe payment gateway integration and processing*
+
+## 🎨 Hawashmart Logo
+![Hawashmart Logo](static/images/logo.png)
+*Hawashmart Logo - Official project logo and branding*
+
 ---
 
 ## 📊 Image Summary
@@ -53,3 +73,8 @@ This file contains all the image references used in the README.md documentation.
 | Reviews | Product review functionality | `static/images/reviews.png` |
 | Admin Panel | Django admin interface | `static/images/admin_panel.png` |
 | Facebook Page | Social media business page | `static/images/fb_page.png` |
+| Checkout Alternative | Additional checkout interface | `static/images/checkout2.png` |
+| Order Dashboard | Order management dashboard | `static/images/order_dashboard.png` |
+| Payment Success | Payment confirmation screen | `static/images/payment_success.png` |
+| Stripe Gateway | Stripe payment gateway view | `static/images/stripe_payment_gateway.png` |
+| Logo | Official project logo | `static/images/logo.png` |

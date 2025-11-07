@@ -67,6 +67,9 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
 [![Shopping Cart](static/images/cart.png)](pictures.md#-shopping-cart)
 *Shopping Cart - User-friendly cart interface with item management and checkout options*
 
+[![Checkout Process](static/images/checkout.png)](pictures.md#-checkout-process)
+*Checkout Process - Streamlined checkout flow with order summary and payment options*
+
 - **Order Management**
   - Complete order lifecycle tracking
   - Order status management (New, Accepted, Completed, Cancelled)
@@ -74,8 +77,10 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Invoice generation
   - Email notifications
 
-[![Checkout Process](static/images/checkout.png)](pictures.md#-checkout-process)
-*Checkout Process - Streamlined checkout flow with order summary and payment options*
+
+
+[![Checkout Process Alternative](static/images/checkout2.png)](pictures.md#-checkout-process-alternative-view)
+*Checkout Process Alternative View - Additional checkout interface with enhanced payment options*
 
 [![Order History](static/images/order_history.png)](pictures.md#-order-history)
 *Order History - Complete order tracking and history management for users*
@@ -88,6 +93,12 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
 
 [![Stripe Payment Integration](static/images/Stripe_payment.png)](pictures.md#-payment-integration)
 *Stripe Payment Integration - Secure payment processing with multiple payment methods*
+
+[![Stripe Payment Gateway](static/images/stripe_payment_gateway.png)](pictures.md#-stripe-payment-gateway)
+*Stripe Payment Gateway - Detailed view of Stripe payment gateway integration and processing*
+
+[![Payment Success](static/images/payment_success.png)](pictures.md#-payment-success)
+*Payment Success - Payment confirmation screen after successful transaction completion*
 ### 👤 User Management
 
 - **Custom User Authentication**
@@ -102,7 +113,8 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Shipping address management
   - Order history tracking
   - Wishlist functionality
-![Hawashmart Dashboard](docs/images/dashboard.png)
+[![Order Dashboard](static/images/order_dashboard.png)](pictures.md#-order-dashboard)
+*Order Dashboard - Comprehensive order management and tracking dashboard for administrators*
 
 ### ⭐ Review & Rating System
 
@@ -112,7 +124,6 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Review moderation system
   - Average rating calculations
   - Review count tracking
-![Hawashmart Dashboard](docs/images/dashboard.png)
 [![Reviews](static/images/reviews.png)](pictures.md#-reviews--ratings)
 *Reviews - Comprehensive product review and rating functionality*
 ### 🔍 Search & Filtering
@@ -123,7 +134,6 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Category-based filtering
   - Price range filtering
   - Availability filtering
-![Hawashmart Dashboard](docs/images/dashboard.png)
 ### 📱 Responsive Design
 
 - **Mobile-First Approach**
@@ -132,9 +142,6 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Touch-friendly interface
   - Cross-browser compatibility
   - Progressive Web App features
-
-![Mobile Responsive Design](docs/images/mobile-responsive.png)
-*[Placeholder: Add screenshot showing mobile responsiveness]*
 
 ## 🛠️ Technology Stack
 
@@ -487,8 +494,6 @@ Review Submission → ReviewRating Creation → Product Rating Update
 - **Category Cache**: Cache category hierarchies
 - **User Session Cache**: Cache user cart and preferences
 
-![Database Performance](docs/images/database-performance.png)
-*[Placeholder: Add database performance metrics diagram]*
 
 ## 🔒 Security Features
 
@@ -597,8 +602,6 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 - Set up S3 for static files
 - Configure CloudFront CDN
 
-![Deployment Architecture](docs/images/deployment-architecture.png)
-*[Placeholder: Add deployment architecture diagram]*
 
 ## 🤝 Contributing
 
@@ -662,8 +665,8 @@ For support and questions:
 
 **Made with ❤️ by the Hawashmart Team**
 
-![Hawashmart Logo](docs/images/logo.png)
-*[Placeholder: Add project logo]*
+[![Hawashmart Logo](static/images/logo.png)](pictures.md#-hawashmart-logo)
+*Hawashmart Logo - Official project logo and branding*
 
 ## 🚀 Agile Development Methodology
 
@@ -930,8 +933,6 @@ main (production)
 - **Delivery**: On-time sprint completions
 - **Satisfaction**: Team and stakeholder satisfaction
 
-![Agile Sprint Board](docs/images/agile/sprint-board.png)
-*[Placeholder: Add screenshot of Agile sprint board]*
 
 ---
 
@@ -956,8 +957,6 @@ Stay connected with Hawashmart across all major social media platforms for the l
 - **Content**: Product photography, lifestyle shots, influencer collaborations
 - **Engagement**: Stories, Reels, IGTV product demonstrations
 
-![Hawashmart Instagram Feed](docs/images/social/instagram-feed.png)
-*[Placeholder: Add screenshot of Hawashmart Instagram feed]*
 
 #### **🐦 Twitter/X**
 - **Profile**: [@Hawashmart](https://twitter.com/hawashmart)
@@ -1137,5 +1136,3 @@ Stay connected with Hawashmart across all major social media platforms for the l
 - **Revenue Impact**: Sales attributed to social media
 - **ROI Analysis**: Cost per acquisition and return on investment
 
-![Social Media Analytics Dashboard](docs/images/social/analytics-dashboard.png)
-*[Placeholder: Add screenshot of social media analytics dashboard]*
