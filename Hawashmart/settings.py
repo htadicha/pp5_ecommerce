@@ -130,6 +130,10 @@ if USE_AWS:
     ]
     # Use Django's default storage - WhiteNoise middleware handles compression
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    
+    # WhiteNoise configuration for better static file serving
+    WHITENOISE_USE_FINDERS = True  # Allow WhiteNoise to find files in STATICFILES_DIRS
+    WHITENOISE_AUTOREFRESH = True  # Auto-refresh in development
 else:
     # Local Static and Media files configuration
     STATIC_URL = '/static/'
@@ -141,6 +145,10 @@ else:
     MEDIA_ROOT = BASE_DIR / 'media'
     # Use Django's default storage - WhiteNoise middleware handles compression
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    
+    # WhiteNoise configuration for better static file serving
+    WHITENOISE_USE_FINDERS = True  # Allow WhiteNoise to find files in STATICFILES_DIRS
+    WHITENOISE_AUTOREFRESH = True  # Auto-refresh in development
 
 
 # Default primary key field type
