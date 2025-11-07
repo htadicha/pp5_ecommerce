@@ -57,10 +57,6 @@ This file contains all the image references used in the README.md documentation.
 ![Stripe Payment Gateway](static/images/stripe_payment_gateway.png)
 *Stripe Payment Gateway - Detailed view of Stripe payment gateway integration and processing*
 
-## 🎨 Hawashmart Logo
-![Hawashmart Logo](static/images/logo.png)
-*Hawashmart Logo - Official project logo and branding*
-
 ---
 
 ## 📊 Image Summary
@@ -81,4 +77,3 @@ This file contains all the image references used in the README.md documentation.
 | Payment Success | Payment confirmation screen | `static/images/payment_success.png` |
 | Stripe Transaction History | Transaction history and payment details | `static/images/stripe_transaction_history.png` |
 | Stripe Gateway | Stripe payment gateway view | `static/images/stripe_payment_gateway.png` |
-| Logo | Official project logo | `static/images/logo.png` |
