@@ -50,6 +50,9 @@ This file contains all the image references used in the README.md documentation.
 ![Payment Success](static/images/payment_success.png)
 *Payment Success - Payment confirmation screen after successful transaction completion*
 
+![Stripe Transaction History](static/images/stripe_transaction_history.png)
+*Stripe Transaction History - Transaction history and payment confirmation details*
+
 ## 🔐 Stripe Payment Gateway
 ![Stripe Payment Gateway](static/images/stripe_payment_gateway.png)
 *Stripe Payment Gateway - Detailed view of Stripe payment gateway integration and processing*
@@ -76,5 +79,6 @@ This file contains all the image references used in the README.md documentation.
 | Checkout Alternative | Additional checkout interface | `static/images/checkout2.png` |
 | Order Dashboard | Order management dashboard | `static/images/order_dashboard.png` |
 | Payment Success | Payment confirmation screen | `static/images/payment_success.png` |
+| Stripe Transaction History | Transaction history and payment details | `static/images/stripe_transaction_history.png` |
 | Stripe Gateway | Stripe payment gateway view | `static/images/stripe_payment_gateway.png` |
 | Logo | Official project logo | `static/images/logo.png` |
