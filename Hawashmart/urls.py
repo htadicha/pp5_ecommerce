@@ -33,6 +33,8 @@ urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
 ]
 
+handler404 = 'Hawashmart.views.page_not_found'
+
 # Serve media files
 if settings.DEBUG:
     # In development, serve media files through Django
