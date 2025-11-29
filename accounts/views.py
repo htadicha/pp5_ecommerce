@@ -5,6 +5,7 @@ from orders.models import Order, OrderProduct
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.conf import settings
 
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
@@ -43,13 +44,20 @@ def register(request):
             mail_subject = 'Please activate your account'
             message = render_to_string('accounts/account_verification_email.html', {
                 'user': user,
-                'domain': current_site,
+                'domain': getattr(current_site, 'domain', request.get_host()),
+                'protocol': 'https' if not settings.DEBUG else 'http',
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
             to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.send()
+            from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None)
+            try:
+                send_email = EmailMessage(mail_subject, message, from_email=from_email, to=[to_email])
+                result = send_email.send(fail_silently=False)
+                if result == 0:
+                    messages.error(request, 'We could not send the verification email. Please try again later.')
+            except Exception as e:
+                messages.error(request, 'Email delivery failed. Please contact support or try again later.')
             return redirect('/accounts/login/?command=verification&email='+email)
     else:
         form = RegistrationForm()

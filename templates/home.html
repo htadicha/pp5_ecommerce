@@ -27,7 +27,7 @@
 
 <div class="row">
     {% for product in products %}
-    <div class="col-md-3">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
         <div class="card card-product-grid">
             <!-- Add the label here -->
             {% if product.is_new %}
@@ -36,7 +36,7 @@
                 <span class="product-label trending">Trending</span>
             {% endif %}
 
-            <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
+            <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}" class="img-fluid" alt="{{ product.product_name }}"> </a>
             <figcaption class="info-wrap">
                 <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
                 <div class="price mt-1">$ {{ product.price }}</div> <!-- price-wrap.// -->
