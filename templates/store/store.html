@@ -7,29 +7,7 @@
 <div class="container">
 
 <div class="row">
-    <aside class="col-md-3">
-        <!-- Categories Card -->
-        <div class="card mb-3">
-            <article class="filter-group">
-                <header class="card-header">
-                    <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true">
-                        <i class="icon-control fa fa-chevron-down"></i>
-                        <h6 class="title">Categories</h6>
-                    </a>
-                </header>
-                <div class="filter-content collapse show" id="collapse_1">
-                    <div class="card-body">
-                        <ul class="list-menu">
-                            <li><a href="{% url 'store' %}">All Products</a></li>
-                            {% for category in links %}
-                                <li><a href="{{ category.get_url }}">{{ category.category_name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </article>
-        </div>
-
+    <aside class="col-12 col-md-3">
         <!-- Sorting Dropdown -->
         <div class="card">
             <article class="filter-group">
@@ -54,7 +32,7 @@
 
     </aside> <!-- col.// -->
 
-    <main class="col-md-9">
+    <main class="col-12 col-md-9">
         <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
                 <span class="mr-md-auto"><b>{{ product_count }}</b> items found</span>
