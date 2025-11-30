@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block meta_description %}
+    <meta name="description" content="{{ single_product.description|striptags|truncatechars:150 }}">
+{% endblock %}
 {% load static %}
 {% block content %}
     <section class="section-content padding-y bg">
