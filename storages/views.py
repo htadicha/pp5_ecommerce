@@ -1,3 +1,6 @@
-from django.shortcuts import render
+"""
+Storages app does not expose HTTP views.
 
-# Create your views here.
+Any future endpoints related to file upload diagnostics or health checks
+can be added here.
+"""

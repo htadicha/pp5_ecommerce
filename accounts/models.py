@@ -7,25 +7,25 @@ from django.dispatch import receiver
 class MyAccountManager(BaseUserManager):
     """
     Custom user manager for Account model.
-    
+
     Extends Django's BaseUserManager to provide custom user creation methods
     for the Account model. Handles both regular user and superuser creation
     with proper validation and normalization.
     """
-    
+
     def create_user(self, first_name, last_name, username, email, password=None):
         """Create and save a regular user with the given email and password."""
         if not email:
-            raise ValueError('User must have an email address')
+            raise ValueError("User must have an email address")
 
         if not username:
-            raise ValueError('User must have a username')
+            raise ValueError("User must have a username")
 
         user = self.model(
-            email = self.normalize_email(email),
-            username = username,
-            first_name = first_name,
-            last_name = last_name,
+            email=self.normalize_email(email),
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
         )
 
         user.set_password(password)
@@ -35,11 +35,11 @@ class MyAccountManager(BaseUserManager):
     def create_superuser(self, first_name, last_name, email, username, password):
         """Create and save a superuser with the given email and password."""
         user = self.create_user(
-            email = self.normalize_email(email),
-            username = username,
-            password = password,
-            first_name = first_name,
-            last_name = last_name,
+            email=self.normalize_email(email),
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
         )
         user.is_admin = True
         user.is_active = True
@@ -52,31 +52,32 @@ class MyAccountManager(BaseUserManager):
 class Account(AbstractBaseUser):
     """
     Custom user model extending AbstractBaseUser.
-    
+
     Replaces Django's default User model with a custom implementation
     that uses email as the primary identifier. Includes additional fields
     for phone number and various permission flags for admin functionality.
     """
-    first_name      = models.CharField(max_length=50)
-    last_name       = models.CharField(max_length=50)
-    username        = models.CharField(max_length=50, unique=True)
-    email           = models.EmailField(max_length=100, unique=True)
-    phone_number    = models.CharField(max_length=50)
-    date_joined     = models.DateTimeField(auto_now_add=True)
-    last_login      = models.DateTimeField(auto_now_add=True)
-    is_admin        = models.BooleanField(default=False)
-    is_staff        = models.BooleanField(default=False)
-    is_active        = models.BooleanField(default=False)
-    is_superadmin        = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=100, unique=True)
+    phone_number = models.CharField(max_length=50)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now_add=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+    is_superadmin = models.BooleanField(default=False)
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "first_name", "last_name"]
 
     objects = MyAccountManager()
 
     def full_name(self):
         """Return the user's full name."""
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
         """Return the user's email as string representation."""
@@ -94,15 +95,16 @@ class Account(AbstractBaseUser):
 class UserProfile(models.Model):
     """
     Extended user profile with additional information.
-    
+
     Provides additional user information beyond the basic Account model,
     including address details and profile picture. Automatically created
     when a new Account is created via signal handlers.
     """
+
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     address_line_1 = models.CharField(blank=True, max_length=100)
     address_line_2 = models.CharField(blank=True, max_length=100)
-    profile_picture = models.ImageField(blank=True, upload_to='userprofile')
+    profile_picture = models.ImageField(blank=True, upload_to="userprofile")
     city = models.CharField(blank=True, max_length=20)
     state = models.CharField(blank=True, max_length=20)
     country = models.CharField(blank=True, max_length=20)
@@ -113,7 +115,7 @@ class UserProfile(models.Model):
 
     def full_address(self):
         """Return the user's complete address."""
-        return f'{self.address_line_1} {self.address_line_2}'
+        return f"{self.address_line_1} {self.address_line_2}"
 
 
 @receiver(post_save, sender=Account)
@@ -130,4 +132,3 @@ def save_user_profile(sender, instance, **kwargs):
         instance.userprofile.save()
     except UserProfile.DoesNotExist:
         UserProfile.objects.create(user=instance)
-

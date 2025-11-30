@@ -1,14 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product, ReviewRating, ProductGallery
-from category.models import Category
-from carts.models import CartItem
-from django.db.models import Q, Avg
-from carts.views import _cart_id
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.http import HttpResponse
-from .forms import ReviewForm
 from django.contrib import messages
+from django.db.models import Q, Avg
+from django.shortcuts import render, get_object_or_404, redirect
+
+from carts.models import CartItem
+from carts.views import _cart_id
+from category.models import Category
 from orders.models import OrderProduct
+from .forms import ReviewForm
+from .models import Product, ReviewRating, ProductGallery
+from django.core.paginator import Paginator
 
 
 def store(request, category_slug=None):
@@ -18,35 +18,37 @@ def store(request, category_slug=None):
     categories = None
     products = None
 
-    if category_slug != None:
+    if category_slug is not None:
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=categories, is_available=True)
     else:
         products = Product.objects.all().filter(is_available=True)
 
-    sort_option = request.GET.get('sort')
+    sort_option = request.GET.get("sort")
 
-    if sort_option == 'price_lh':
-        products = products.order_by('price')
-    elif sort_option == 'alpha_az':
-        products = products.order_by('product_name')
-    elif sort_option == 'alpha_za':
-        products = products.order_by('-product_name')
-    elif sort_option == 'rating':
-        products = products.annotate(avg_rating=Avg('reviewrating__rating')).order_by('-avg_rating')
+    if sort_option == "price_lh":
+        products = products.order_by("price")
+    elif sort_option == "alpha_az":
+        products = products.order_by("product_name")
+    elif sort_option == "alpha_za":
+        products = products.order_by("-product_name")
+    elif sort_option == "rating":
+        products = products.annotate(avg_rating=Avg("reviewrating__rating")).order_by(
+            "-avg_rating"
+        )
     else:
-        products = products.order_by('-created_date')
+        products = products.order_by("-created_date")
 
     paginator = Paginator(products, 16)
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     paged_products = paginator.get_page(page)
     product_count = products.count()
 
     context = {
-        'products': paged_products,
-        'product_count': product_count,
+        "products": paged_products,
+        "product_count": product_count,
     }
-    return render(request, 'store/store.html', context)
+    return render(request, "store/store.html", context)
 
 
 def product_detail(request, category_slug, product_slug):
@@ -55,9 +57,13 @@ def product_detail(request, category_slug, product_slug):
     """
     try:
         # Get the single product
-        single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+        single_product = Product.objects.get(
+            category__slug=category_slug, slug=product_slug
+        )
         # Check if the product is already in the cart
-        in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
+        in_cart = CartItem.objects.filter(
+            cart__cart_id=_cart_id(request), product=single_product
+        ).exists()
     except Exception as e:
         # It's better to handle specific exceptions, but for now we'll re-raise
         raise e
@@ -65,7 +71,9 @@ def product_detail(request, category_slug, product_slug):
     # Check if the user has purchased this product before to allow reviews
     if request.user.is_authenticated:
         try:
-            orderproduct = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
+            orderproduct = OrderProduct.objects.filter(
+                user=request.user, product_id=single_product.id
+            ).exists()
         except OrderProduct.DoesNotExist:
             orderproduct = None
     else:
@@ -78,55 +86,59 @@ def product_detail(request, category_slug, product_slug):
     # The context now only needs the single_product. The template will handle
     # accessing the variations via `single_product.variation_set.all()`
     context = {
-        'single_product': single_product,
-        'in_cart'       : in_cart,
-        'orderproduct': orderproduct,
-        'reviews': reviews,
-        'product_gallery': product_gallery,
+        "single_product": single_product,
+        "in_cart": in_cart,
+        "orderproduct": orderproduct,
+        "reviews": reviews,
+        "product_gallery": product_gallery,
     }
-    return render(request, 'store/product_detail.html', context)
+    return render(request, "store/product_detail.html", context)
 
 
 def search(request):
     """
     Search products by name or description keywords.
     """
-    products = None # Initialize products to None
+    products = None  # Initialize products to None
     product_count = 0
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
+    if "keyword" in request.GET:
+        keyword = request.GET["keyword"]
         if keyword:
-            products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
+            products = Product.objects.order_by("-created_date").filter(
+                Q(description__icontains=keyword) | Q(product_name__icontains=keyword)
+            )
             product_count = products.count()
     context = {
-        'products': products,
-        'product_count': product_count,
+        "products": products,
+        "product_count": product_count,
     }
-    return render(request, 'store/store.html', context)
+    return render(request, "store/store.html", context)
 
 
 def submit_review(request, product_id):
     """
     Submit or update a product review.
     """
-    url = request.META.get('HTTP_REFERER')
-    if request.method == 'POST':
+    url = request.META.get("HTTP_REFERER")
+    if request.method == "POST":
         try:
-            reviews = ReviewRating.objects.get(user__id=request.user.id, product__id=product_id)
+            reviews = ReviewRating.objects.get(
+                user__id=request.user.id, product__id=product_id
+            )
             form = ReviewForm(request.POST, instance=reviews)
             form.save()
-            messages.success(request, 'Thank you! Your review has been updated.')
+            messages.success(request, "Thank you! Your review has been updated.")
             return redirect(url)
         except ReviewRating.DoesNotExist:
             form = ReviewForm(request.POST)
             if form.is_valid():
                 data = ReviewRating()
-                data.subject = form.cleaned_data['subject']
-                data.rating = form.cleaned_data['rating']
-                data.review = form.cleaned_data['review']
-                data.ip = request.META.get('REMOTE_ADDR')
+                data.subject = form.cleaned_data["subject"]
+                data.rating = form.cleaned_data["rating"]
+                data.review = form.cleaned_data["review"]
+                data.ip = request.META.get("REMOTE_ADDR")
                 data.product_id = product_id
                 data.user_id = request.user.id
                 data.save()
-                messages.success(request, 'Thank you! Your review has been submitted.')
+                messages.success(request, "Thank you! Your review has been submitted.")
                 return redirect(url)

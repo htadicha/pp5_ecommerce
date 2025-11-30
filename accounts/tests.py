@@ -1,3 +1,6 @@
-from django.test import TestCase
+"""
+Placeholder for accounts app tests.
 
-# Create your tests here.
+Add registration, profile, and authentication tests to cover the
+critical flows highlighted in the assessment feedback.
+"""

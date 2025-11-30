@@ -1,3 +1,6 @@
-from django.test import TestCase
+"""
+Placeholder for storages app tests.
 
-# Create your tests here.
+Populate with tests that exercise any custom storage backends that are
+added in the future.
+"""

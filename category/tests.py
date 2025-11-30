@@ -1,3 +1,6 @@
-from django.test import TestCase
+"""
+Placeholder for category app tests.
 
-# Create your tests here.
+Add coverage for category list views, filters, and context processors
+when writing automated tests.
+"""

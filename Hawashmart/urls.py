@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -21,19 +22,20 @@ from django.views.static import serve
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # The root URL now points to the home view
-    path('', views.home, name='home'), 
-    
+    path("", views.home, name="home"),
     # Your apps are included under their own paths
-    path('store/', include('store.urls')),
-    path('cart/', include('carts.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('orders/', include('orders.urls')),
-    path("ckeditor5/", include('django_ckeditor_5.urls'), name="ck_editor_5_upload_file"),
+    path("store/", include("store.urls")),
+    path("cart/", include("carts.urls")),
+    path("accounts/", include("accounts.urls")),
+    path("orders/", include("orders.urls")),
+    path(
+        "ckeditor5/", include("django_ckeditor_5.urls"), name="ck_editor_5_upload_file"
+    ),
 ]
 
-handler404 = 'Hawashmart.views.page_not_found'
+handler404 = "Hawashmart.views.page_not_found"
 
 # Serve media files
 if settings.DEBUG:
@@ -42,8 +44,8 @@ if settings.DEBUG:
 else:
     # In production, serve media files if not using AWS (fallback)
     # If using AWS, media files are served directly from S3
-    use_aws = getattr(settings, 'USE_AWS', False)
+    use_aws = getattr(settings, "USE_AWS", False)
     if not use_aws:
         urlpatterns += [
-            path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
+            path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
         ]

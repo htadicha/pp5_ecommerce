@@ -1,3 +1,6 @@
-from django.db import models
+"""
+Data models are not required for the storages app.
 
-# Create your models here.
+This module exists to make the Django app complete and to provide an
+obvious home for models if file metadata ever needs to be persisted.
+"""

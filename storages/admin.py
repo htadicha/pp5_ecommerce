@@ -1,3 +1,7 @@
-from django.contrib import admin
+"""
+Admin configuration placeholder for the storages app.
 
-# Register your models here.
+No admin registrations are required yet because the app only hosts
+storage helpers. This module remains to keep the default Django
+structure intact.
+"""

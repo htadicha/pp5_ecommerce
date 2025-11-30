@@ -1,3 +1,6 @@
-from django.test import TestCase
+"""
+Placeholder for store app tests.
 
-# Create your tests here.
+When expanding automated coverage, add tests for search, filtering, and
+rating workflows.
+"""

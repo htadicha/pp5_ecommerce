@@ -1,3 +1,6 @@
-from django.test import TestCase
+"""
+Placeholder for orders app tests.
 
-# Create your tests here.
+Add end-to-end tests covering order placement, payments, and webhook
+handling when extending the suite.
+"""
