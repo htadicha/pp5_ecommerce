@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "carts",
     "orders",
     "storages",  # For AWS S3
+    "marketing",
     "admin_thumbnails",
     "django_ckeditor_5",
 ]

@@ -1,6 +1,33 @@
 <!-- ========================= FOOTER ========================= -->
 <footer class="section-footer border-top">
     <div class="container">
+        <section class="py-4 border-bottom">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h5 class="mb-1">Stay in the loop</h5>
+                    <p class="text-muted mb-0">Subscribe to receive product drops, restock alerts, and exclusive offers.</p>
+                </div>
+                <div class="col-md-6">
+                    <form action="{% url 'marketing:newsletter_subscribe' %}"
+                          method="post"
+                          class="form-inline justify-content-md-end newsletter-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="consented" value="true">
+                        <div class="input-group w-100 w-md-auto">
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   placeholder="Email address"
+                                   aria-label="Newsletter email"
+                                   required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
         <section class="footer-bottom border-top row">
             <div class="col-md-2">
                 <p class="text-muted">&copy 2019 hawashmart</p>
