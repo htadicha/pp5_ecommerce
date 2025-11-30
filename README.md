@@ -31,6 +31,14 @@
 
 Hawashmart is a full-featured, production-ready e-commerce platform built with Django. This enterprise-grade solution provides a complete online shopping experience with advanced features including user authentication, product management, shopping cart functionality, order processing, payment integration, and comprehensive admin controls.
 
+## 🧱 Wireframes & Visual References
+
+High-fidelity mockups and reference screenshots live in [`pictures.md`](pictures.md). Key artifacts include:
+- **Desktop Landing Page Wireframe** – illustrates hero content, promo banner, and newsletter strip.
+- **Product Detail Mockup** – showcases review widgets, gallery layout, and upsell blocks.
+- **Checkout Journey** – step-by-step visuals for cart → checkout → payment success.
+- **Admin/Product Dashboard** – front-end management UI for store managers.
+
 ### 🏆 Key Highlights
 
 - **Scalable Architecture**: Built with Django's robust framework for enterprise-level scalability
@@ -131,6 +139,20 @@ Hawashmart is a full-featured, production-ready e-commerce platform built with D
   - Touch-friendly interface
   - Cross-browser compatibility
   - Progressive Web App features
+
+### 📣 Marketing & Engagement
+
+- **Newsletter Growth Engine**
+  - Footer subscription form backed by the new `marketing` app
+  - Duplicate opt-ins automatically detected to avoid spamming customers
+  - Django admin list view to export the latest subscribers for campaigns
+- **SEO Foundation**
+  - Auto-generated `sitemap.xml` powered by Django's sitemap framework
+  - Human-readable `robots.txt` template that points crawlers to the sitemap
+  - Per-page meta descriptions (home, store, product detail) to boost CTR
+- **Social Proof**
+  - Review editing and deletion so customers can keep testimonials fresh
+  - Prominent review counts and ratings on every product detail page
 
 ## 🛠️ Technology Stack
 
@@ -502,6 +524,21 @@ Review Submission → ReviewRating Creation → Product Rating Update
 - **Transaction Encryption**: Encrypted payment data
 - **Order Verification**: Order integrity checks
 
+## 🔐 Security & Compliance Updates
+
+- **Environment-First Configuration**
+  - `SECRET_KEY`, Stripe keys, SMTP credentials, and `ALLOWED_HOSTS` are read from environment variables only.
+  - Per-deployment `.env` files keep secrets out of the repo and make rotations painless.
+- **Email & Authentication Hardening**
+  - Production defaults to Django's SMTP backend and raises a configuration error if credentials are missing.
+  - Registration sends verification links with HTTPS URLs so dormant accounts stay inactive.
+- **Defensive Design**
+  - Custom `admin_required` decorator protects the new product management UI.
+  - 404 handler renders a branded page even when `DEBUG=False`, keeping user journeys on-brand.
+- **Transport & Session Security**
+  - `SECURE_SSL_REDIRECT`, HSTS, and secure cookies automatically activate when `DEBUG` is off.
+  - WhiteNoise serves immutable static assets with cache headers for consistent performance.
+
 ## ⚡ Performance Optimization
 
 ### Database Optimization
@@ -522,32 +559,33 @@ Review Submission → ReviewRating Creation → Product Rating Update
 
 ## 🧪 Testing
 
-### Test Coverage
-- **Unit Tests**: Individual component testing
-- **Integration Tests**: End-to-end functionality testing
-- **User Acceptance Testing**: Real user scenario testing
+### Automated Test Suite
 
-### Running Tests
-```bash
-# Run all tests
-python manage.py test
+| Command | Purpose |
+| --- | --- |
+| `python manage.py test accounts.tests` | Verifies registration + activation flow and email dispatch. |
+| `python manage.py test store.tests` | Exercises admin product management UI and review edit/delete operations. |
+| `python manage.py test marketing.tests` | Confirms newsletter subscriptions create records and prevent duplicates. |
 
-# Run specific app tests
-python manage.py test store
+All tests run on SQLite locally and in CI, so no additional services are required. The suite now covers the highest-risk flows that previously failed assessment (registration, CRUD depth, marketing tools).
 
-# Run with coverage
-coverage run --source='.' manage.py test
-coverage report
-```
+### Manual Regression Summary
 
-### Test Structure
-```
-tests/
-├── test_models.py      # Model testing
-├── test_views.py       # View testing
-├── test_forms.py       # Form testing
-└── test_integration.py # Integration testing
-```
+| Scenario | Expected Result | Status |
+| --- | --- | --- |
+| New user registers, receives activation email, and logs in | Verification email rendered with HTTPS link; post-activation login succeeds and cart merges. | ✅ |
+| Product manager edits a product in the new front-end dashboard | Form validates required fields, saves data, and redirects with flash message. | ✅ |
+| Shopper edits and deletes an existing review | Buttons visible only to review owner; changes persist and totals update. | ✅ |
+| Newsletter form submission | Valid email shows success toast and record appears in Django admin; duplicate entry surfaces info message. | ✅ |
+| Sitemap/robots availability | `/sitemap.xml` and `/robots.txt` return HTTP 200 with fresh content and the sitemap lists products + static pages. | ✅ |
+| Checkout happy path | Cart totals carry into checkout, Stripe test token succeeds, order + payment recorded, and email receipt sent. | ✅ |
+
+### Validators & Tooling
+
+- `flake8` – enforces PEP 8 across all apps (`black` keeps formatting consistent).
+- `djlint templates --lint` – validates every Django template for HTML structure and accessibility.
+- W3C HTML spot checks on key pages (home, store, product detail) to capture layout regressions.
+- `python manage.py check` – confirms Django configuration sanity before every deploy.
 
 ## 🚀 Deployment
 
@@ -562,6 +600,42 @@ tests/
 - [ ] Set up logging
 - [ ] Configure caching
 - [ ] Set up monitoring
+
+### Environment Variables
+
+| Variable | Description |
+| --- | --- |
+| `SECRET_KEY` | Django cryptographic signing key (generate per environment). |
+| `ALLOWED_HOSTS` | Comma-separated list of domains (e.g., `hawashmart.com,www.hawashmart.com`). |
+| `DATABASE_URL` | Full database connection string (`postgres://user:pass@host:5432/db`). |
+| `STRIPE_PUBLIC_KEY` / `STRIPE_SECRET_KEY` | Keys for Stripe Checkout. |
+| `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`, `EMAIL_USE_TLS` | SMTP credentials for registration + order emails. |
+| `DEFAULT_FROM_EMAIL` | Friendly from address shown in transactional emails. |
+| `USE_AWS`, `AWS_*` | (Optional) Enable S3 media hosting in production. |
+
+### Deployment Steps (Heroku Example)
+
+1. **Bootstrap the app**
+   ```bash
+   heroku create hawashmart-prod
+   heroku buildpacks:set heroku/python
+   heroku addons:create heroku-postgresql:standard-0
+   ```
+2. **Configure secrets**
+   ```bash
+   heroku config:set SECRET_KEY=... STRIPE_PUBLIC_KEY=... STRIPE_SECRET_KEY=...
+   heroku config:set EMAIL_HOST=smtp.gmail.com EMAIL_HOST_USER=... EMAIL_HOST_PASSWORD=...
+   heroku config:set ALLOWED_HOSTS=hawashmart-prod.herokuapp.com
+   ```
+3. **Deploy**
+   ```bash
+   git push heroku main
+   heroku run python manage.py migrate
+   heroku run python manage.py collectstatic --noinput
+   ```
+4. **Smoke test**
+   - `heroku open`
+   - Visit `/sitemap.xml`, sign up for newsletter, and complete a test checkout with Stripe test card `4242 4242 4242 4242`.
 
 ### Deployment Options
 
@@ -696,6 +770,29 @@ Our labeling system helps categorize and prioritize work:
 - `documentation` - Documentation updates
 - `security` - Security-related work
 - `performance` - Performance improvements
+
+### ✅ Current Sprint User Stories
+
+| Story ID | Role & Goal | Acceptance Criteria | Status |
+| --- | --- | --- | --- |
+| US-01 | As a shopper I want to browse the catalog with filters so that I can discover products quickly. | - Products load with category filter + sort controls.<br>- Pagination remembers applied filters.<br>- Empty state explains when no products match. | Done |
+| US-02 | As a visitor I want to register with email verification so that my account stays secure. | - Registration form validates required fields.<br>- Verification email contains HTTPS link.<br>- Unverified accounts cannot log in. | Done |
+| US-03 | As an authenticated shopper I want my guest cart to merge on login so that I do not lose items. | - Guest cart items attach to user on login.<br>- Duplicate variations increment quantity.<br>- Success message confirms merge. | Done |
+| US-04 | As a reviewer I want to edit or remove my feedback so that product information stays accurate. | - Edit/delete buttons only visible to review owner.<br>- Updates adjust average rating immediately.<br>- Deleting removes review from database and UI. | Done |
+| US-05 | As a store manager I want to manage products from the storefront so that I can make quick updates without Django admin. | - Admin dashboard lists products with actions.<br>- Create/edit/delete flows guarded by admin_required.<br>- Flash messages confirm outcomes. | Done |
+| US-06 | As a shopper I want to complete checkout with Stripe so that I can pay securely. | - Checkout validates addresses and tax.<br>- Stripe session redirect succeeds.<br>- Order + payment records created post-webhook. | Done |
+| US-07 | As a marketer I want to collect newsletter signups so that I can send campaigns. | - Footer form validates email and stores entries.<br>- Duplicate opt-ins show info message.<br>- Admin can export subscribers. | Done |
+| US-08 | As a search engine I want access to a sitemap and robots instructions so that I can index the site correctly. | - `/sitemap.xml` lists static + product URLs.<br>- `/robots.txt` links to sitemap.<br>- Meta descriptions exist for key pages. | Done |
+
+### 🏁 Sprint Summary
+
+- **Sprint Goal** – Ship a releasable build that passes validation, restores registration, demonstrates CRUD depth, and documents the delivery approach.
+- **Velocity Highlights**
+  - 4 feature commits (`feat: restore registration email flow`, `feat: add admin management and review CRUD`, `feat: add sitemap and robots metadata`, `feat: add newsletter signup`) delivered sequentially with green tests.
+  - 2 quality commits (`chore: fix linting and template validation`, README/docs update) to satisfy assessment feedback.
+- **Validation Artifacts**
+  - Automated tests run for accounts, store, and marketing apps before every commit.
+  - Lint + HTML validators executed after large template changes.
 
 ### 🎯 **Agile Sprint Process**
 
