@@ -6,6 +6,7 @@ from pathlib import Path
 import os
 from decouple import config
 import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,8 +77,15 @@ AUTH_USER_MODEL = "accounts.Account"
 
 
 # Database Configuration
-# Uses dj_database_url to parse the DATABASE_URL from .env or Heroku
-DATABASES = {"default": dj_database_url.config(default=config("DATABASE_URL"))}
+# Uses dj_database_url to parse DATABASE_URL with a safe SQLite fallback
+DATABASE_URL = config("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
+DATABASES = {
+    "default": dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        ssl_require=not DEBUG,
+    )
+}
 
 
 # Password validation
@@ -288,15 +296,36 @@ CKEDITOR_5_CONFIGS = {
 }
 
 # Email configuration
-EMAIL_BACKEND = config(
-    "EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+DEFAULT_EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+    if DEBUG
+    else "django.core.mail.backends.smtp.EmailBackend"
 )
+EMAIL_BACKEND = config("EMAIL_BACKEND", default=DEFAULT_EMAIL_BACKEND)
 EMAIL_HOST = config("EMAIL_HOST", default=None)
 EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default=None)
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default=None)
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER)
+DEFAULT_FROM_EMAIL = config(
+    "DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER or "noreply@hawashmart.com"
+)
+
+if not DEBUG and EMAIL_BACKEND.endswith("smtp.EmailBackend"):
+    missing_settings = [
+        name
+        for name, value in {
+            "EMAIL_HOST": EMAIL_HOST,
+            "EMAIL_HOST_USER": EMAIL_HOST_USER,
+            "EMAIL_HOST_PASSWORD": EMAIL_HOST_PASSWORD,
+        }.items()
+        if not value
+    ]
+    if missing_settings:
+        missing = ", ".join(missing_settings)
+        raise ImproperlyConfigured(
+            f"SMTP email backend is configured but missing required settings: {missing}"
+        )
 
 # Production Security Settings
 if not DEBUG:
