@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="section-content padding-y">
+        <div class="container">
+            <h2>Delete {{ product.product_name }}</h2>
+            <p class="text-muted">This action cannot be undone. The product will be removed from the storefront immediately.</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes, delete</button>
+                <a href="{% url 'manage_products' %}" class="btn btn-light">Cancel</a>
+            </form>
+        </div>
+    </section>
+{% endblock %}

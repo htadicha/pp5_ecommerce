@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="section-content padding-y">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+                <div>
+                    <h2 class="mb-2 mb-md-0">Manage Products</h2>
+                    <p class="text-muted mb-0">Add, edit, or remove products directly from the storefront.</p>
+                </div>
+                <a href="{% url 'create_product' %}" class="btn btn-primary">Add Product</a>
+            </div>
+            {% include 'includes/alerts.html' %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.product_name }}</td>
+                                <td>{{ product.category.category_name }}</td>
+                                <td>${{ product.price }}</td>
+                                <td>{{ product.stock }}</td>
+                                <td>
+                                    {% if product.is_available %}
+                                        <span class="badge badge-success">Available</span>
+                                    {% else %}
+                                        <span class="badge badge-secondary">Hidden</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-right">
+                                    <a href="{{ product.get_url }}" class="btn btn-sm btn-outline-info">View</a>
+                                    <a href="{% url 'update_product' product.slug %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <a href="{% url 'delete_product' product.slug %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center py-4">No products found.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}

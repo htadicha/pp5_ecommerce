@@ -1,14 +1,16 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Q, Avg
 from django.shortcuts import render, get_object_or_404, redirect
 
+from accounts.decorators import admin_required
 from carts.models import CartItem
 from carts.views import _cart_id
 from category.models import Category
 from orders.models import OrderProduct
-from .forms import ReviewForm
-from .models import Product, ReviewRating, ProductGallery
-from django.core.paginator import Paginator
+from .forms import ProductForm, ReviewForm
+from .models import Product, ProductGallery, ReviewRating
 
 
 def store(request, category_slug=None):
@@ -115,6 +117,7 @@ def search(request):
     return render(request, "store/store.html", context)
 
 
+@login_required(login_url="login")
 def submit_review(request, product_id):
     """
     Submit or update a product review.
@@ -126,9 +129,11 @@ def submit_review(request, product_id):
                 user__id=request.user.id, product__id=product_id
             )
             form = ReviewForm(request.POST, instance=reviews)
-            form.save()
-            messages.success(request, "Thank you! Your review has been updated.")
-            return redirect(url)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Thank you! Your review has been updated.")
+                return redirect(url)
+            messages.error(request, "Please correct the errors below.")
         except ReviewRating.DoesNotExist:
             form = ReviewForm(request.POST)
             if form.is_valid():
@@ -142,3 +147,143 @@ def submit_review(request, product_id):
                 data.save()
                 messages.success(request, "Thank you! Your review has been submitted.")
                 return redirect(url)
+            messages.error(request, "Please correct the errors below.")
+    return redirect(url)
+
+
+@login_required(login_url="login")
+@admin_required
+def manage_products(request):
+    """
+    Display a paginated list of products for admins to manage.
+    """
+
+    products = Product.objects.order_by("-modified_date")
+    context = {
+        "products": products,
+    }
+    return render(request, "store/manage/product_list.html", context)
+
+
+@login_required(login_url="login")
+@admin_required
+def create_product(request):
+    """
+    Allow admins to create a new product through the front-end dashboard.
+    """
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product created successfully.")
+            return redirect("manage_products")
+        messages.error(request, "Please correct the errors below.")
+    else:
+        form = ProductForm()
+    return render(
+        request,
+        "store/manage/product_form.html",
+        {
+            "form": form,
+            "title": "Add Product",
+            "submit_label": "Create Product",
+        },
+    )
+
+
+@login_required(login_url="login")
+@admin_required
+def update_product(request, slug):
+    """
+    Allow admins to edit existing product details.
+    """
+
+    product = get_object_or_404(Product, slug=slug)
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product updated successfully.")
+            return redirect("manage_products")
+        messages.error(request, "Please correct the errors below.")
+    else:
+        form = ProductForm(instance=product)
+    return render(
+        request,
+        "store/manage/product_form.html",
+        {
+            "form": form,
+            "title": f"Edit {product.product_name}",
+            "submit_label": "Save Changes",
+        },
+    )
+
+
+@login_required(login_url="login")
+@admin_required
+def delete_product(request, slug):
+    """
+    Allow admins to confirm and delete a product entry.
+    """
+
+    product = get_object_or_404(Product, slug=slug)
+    if request.method == "POST":
+        product.delete()
+        messages.success(request, "Product deleted successfully.")
+        return redirect("manage_products")
+    return render(
+        request,
+        "store/manage/product_confirm_delete.html",
+        {
+            "product": product,
+        },
+    )
+
+
+@login_required(login_url="login")
+def edit_review(request, review_id):
+    """
+    Permit reviewers to edit their previous review submissions.
+    """
+
+    review = get_object_or_404(ReviewRating, pk=review_id, user=request.user)
+    if request.method == "POST":
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your review has been updated.")
+            return redirect(review.product.get_url())
+        messages.error(request, "Please correct the errors below.")
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(
+        request,
+        "store/review_form.html",
+        {
+            "form": form,
+            "product": review.product,
+        },
+    )
+
+
+@login_required(login_url="login")
+def delete_review(request, review_id):
+    """
+    Provide a confirmation flow for reviewers to delete their feedback.
+    """
+
+    review = get_object_or_404(ReviewRating, pk=review_id, user=request.user)
+    product_url = review.product.get_url()
+    if request.method == "POST":
+        review.delete()
+        messages.success(request, "Your review has been deleted.")
+        return redirect(product_url)
+    return render(
+        request,
+        "store/review_confirm_delete.html",
+        {
+            "review": review,
+        },
+    )

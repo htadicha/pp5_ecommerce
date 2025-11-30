@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <h2>Delete Your Review</h2>
+            <p>Are you sure you want to delete your review for <strong>{{ review.product.product_name }}</strong>?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete Review</button>
+                <a href="{{ review.product.get_url }}" class="btn btn-light">Cancel</a>
+            </form>
+        </div>
+    </section>
+{% endblock %}

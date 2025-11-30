@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <h2 class="mb-3">Edit Review for {{ product.product_name }}</h2>
+            {% include 'includes/alerts.html' %}
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Save Review</button>
+                <a href="{{ product.get_url }}" class="btn btn-light">Cancel</a>
+            </form>
+        </div>
+    </section>
+{% endblock %}

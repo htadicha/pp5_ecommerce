@@ -15,4 +15,18 @@ urlpatterns = [
     # Other URLs
     path("search/", views.search, name="search"),
     path("submit_review/<int:product_id>/", views.submit_review, name="submit_review"),
+    path("reviews/<int:review_id>/edit/", views.edit_review, name="edit_review"),
+    path("reviews/<int:review_id>/delete/", views.delete_review, name="delete_review"),
+    path("manage/products/", views.manage_products, name="manage_products"),
+    path("manage/products/add/", views.create_product, name="create_product"),
+    path(
+        "manage/products/<slug:slug>/edit/",
+        views.update_product,
+        name="update_product",
+    ),
+    path(
+        "manage/products/<slug:slug>/delete/",
+        views.delete_product,
+        name="delete_product",
+    ),
 ]
